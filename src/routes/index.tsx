@@ -6,10 +6,9 @@ import { GlassNavbar } from "@/components/layout/GlassNavbar";
 import { IntroLoader } from "@/components/intro/IntroLoader";
 import { Hero } from "@/components/hero/Hero";
 import { FeaturedProjects } from "@/components/projects/FeaturedProjects";
-import { Philosophy } from "@/components/philosophy/Philosophy";
-import { Expertise } from "@/components/expertise/Expertise";
 import { ExperienceTimeline } from "@/components/timeline/ExperienceTimeline";
 import { ArchitectureShowcase } from "@/components/systems/ArchitectureShowcase";
+import { SkillsGraph } from "@/components/skills/SkillsGraph";
 import { Contact, Footer } from "@/components/contact/Contact";
 import { PROFILE } from "@/data/portfolio";
 
@@ -66,10 +65,9 @@ function Index() {
       <main className="relative">
         <Hero />
         <FeaturedProjects />
-        <Philosophy />
-        <Expertise />
-        <ExperienceTimeline />
         <ArchitectureShowcase />
+        <SkillsGraph />
+        <ExperienceTimeline />
         <Contact />
         <Footer />
       </main>

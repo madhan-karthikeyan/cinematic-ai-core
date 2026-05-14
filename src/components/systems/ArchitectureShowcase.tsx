@@ -111,14 +111,6 @@ const ALL_NODES: Record<string, Node & { color?: string }> = (() => {
 
 /* ---------- component ---------- */
 
-const CAPABILITIES = [
-  "Retrieval Systems",
-  "Vector Infrastructure",
-  "Async Orchestration",
-  "Semantic Caching",
-  "Production ML",
-  "Distributed Backends",
-];
 
 export function ArchitectureShowcase() {
   const ref = useRef<HTMLDivElement>(null);
@@ -374,27 +366,8 @@ export function ArchitectureShowcase() {
           </div>
         </div>
 
-        {/* core capabilities rail */}
-        <Reveal delay={0.1}>
-          <div className="mt-12 relative overflow-hidden">
-            <div className="font-mono text-[10px] uppercase tracking-[0.32em] text-text-tertiary mb-4">
-              Core Capabilities
-            </div>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[11px] md:text-xs uppercase tracking-[0.26em] text-text-secondary">
-              {CAPABILITIES.map((c, i) => (
-                <span key={c} className="flex items-center gap-6">
-                  <span className="hover:text-text-primary transition-colors duration-500 ease-cinematic">
-                    {c}
-                  </span>
-                  {i < CAPABILITIES.length - 1 && (
-                    <span aria-hidden className="h-px w-8 bg-text-tertiary/25" />
-                  )}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
 }
+

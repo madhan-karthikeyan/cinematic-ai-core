@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 const NAV = [
   { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
   { label: "Systems", href: "#systems" },
-  { label: "Stack", href: "#stack" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -26,20 +26,20 @@ export function GlassNavbar() {
       className="fixed top-5 left-1/2 z-50 -translate-x-1/2 w-[min(820px,calc(100%-2rem))]"
     >
       <nav
-        className={`flex items-center justify-between gap-4 rounded-full pl-4 pr-2 py-1.5 ease-cinematic transition-all duration-700 ${
+        className={`flex items-center justify-between gap-4 rounded-full pl-4 pr-2 py-1 ease-cinematic transition-all duration-700 ${
           scrolled
-            ? "bg-black/40 border border-white/[0.07] backdrop-blur-xl backdrop-saturate-150"
-            : "bg-white/[0.02] border border-white/[0.05] backdrop-blur-md"
+            ? "bg-black/35 border border-white/[0.05] backdrop-blur-xl backdrop-saturate-150"
+            : "bg-white/[0.015] border border-white/[0.035] backdrop-blur-md"
         }`}
       >
         <a
           href="#top"
-          className="font-display text-[13px] tracking-tight flex items-center gap-2 text-text-primary/90"
+          className="font-display text-[13px] tracking-tight flex items-center gap-2 text-text-primary/85"
         >
-          <span className="h-1 w-1 rounded-full bg-accent-cyan/80" />
+          <span className="h-1 w-1 rounded-full bg-text-primary/40" />
           <span>MK</span>
         </a>
-        <ul className="hidden md:flex items-center gap-0.5 text-[13px] text-text-secondary">
+        <ul className="hidden md:flex items-center gap-0.5 text-[12.5px] text-text-secondary/90">
           {NAV.map((n) => (
             <li key={n.href}>
               <a
@@ -47,7 +47,7 @@ export function GlassNavbar() {
                 className="relative px-3 py-1.5 rounded-full hover:text-text-primary transition-colors duration-500 ease-cinematic group"
               >
                 {n.label}
-                <span className="absolute left-3 right-3 bottom-1 h-px scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-cinematic bg-text-primary/40" />
+                <span className="absolute left-3 right-3 bottom-1 h-px origin-left scale-x-0 bg-text-primary/35 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
               </a>
             </li>
           ))}
