@@ -7,7 +7,7 @@ import { RagOrchestrationGraph } from "./visuals/RagOrchestrationGraph";
 import { DriftBenchTemporal } from "./visuals/DriftBenchTemporal";
 import { ClusterRetrievalTopology } from "./visuals/ClusterRetrievalTopology";
 
-const VISUALS: Record<string, () => JSX.Element> = {
+const VISUALS: Record<string, React.ComponentType> = {
   medicore: MediCoreTopology,
   satellite: SatelliteRetrievalMap,
   rag: RagOrchestrationGraph,
