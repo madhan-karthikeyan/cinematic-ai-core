@@ -23,29 +23,31 @@ export function GlassNavbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-      className="fixed top-4 left-1/2 z-50 -translate-x-1/2 w-[min(900px,calc(100%-2rem))]"
+      className="fixed top-5 left-1/2 z-50 -translate-x-1/2 w-[min(820px,calc(100%-2rem))]"
     >
       <nav
-        className={`flex items-center justify-between gap-4 rounded-full px-3 py-2 ease-cinematic transition-all duration-500 ${
-          scrolled ? "glass-strong shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]" : "glass"
+        className={`flex items-center justify-between gap-4 rounded-full pl-4 pr-2 py-1.5 ease-cinematic transition-all duration-700 ${
+          scrolled
+            ? "bg-black/40 border border-white/[0.07] backdrop-blur-xl backdrop-saturate-150"
+            : "bg-white/[0.02] border border-white/[0.05] backdrop-blur-md"
         }`}
       >
         <a
           href="#top"
-          className="font-display text-sm pl-3 tracking-tight flex items-center gap-2"
+          className="font-display text-[13px] tracking-tight flex items-center gap-2 text-text-primary/90"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-accent-cyan shadow-[0_0_12px] shadow-accent-cyan" />
+          <span className="h-1 w-1 rounded-full bg-accent-cyan/80" />
           <span>MK</span>
         </a>
-        <ul className="hidden md:flex items-center gap-1 text-sm text-text-secondary">
+        <ul className="hidden md:flex items-center gap-0.5 text-[13px] text-text-secondary">
           {NAV.map((n) => (
             <li key={n.href}>
               <a
                 href={n.href}
-                className="relative px-3 py-1.5 rounded-full hover:text-text-primary transition-colors ease-cinematic group"
+                className="relative px-3 py-1.5 rounded-full hover:text-text-primary transition-colors duration-500 ease-cinematic group"
               >
                 {n.label}
-                <span className="absolute left-3 right-3 -bottom-0.5 h-px scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 ease-cinematic bg-gradient-to-r from-accent-cyan to-accent-indigo" />
+                <span className="absolute left-3 right-3 bottom-1 h-px scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-700 ease-cinematic bg-text-primary/40" />
               </a>
             </li>
           ))}
@@ -54,7 +56,7 @@ export function GlassNavbar() {
           href="/resume.pdf"
           target="_blank"
           rel="noreferrer"
-          className="rounded-full px-4 py-1.5 text-xs font-mono uppercase tracking-widest glass hover:bg-white/10 transition-colors ease-cinematic"
+          className="rounded-full px-3.5 py-1.5 text-[10px] font-mono uppercase tracking-[0.22em] text-text-secondary hover:text-text-primary border border-white/[0.06] hover:border-white/15 transition-all ease-cinematic"
         >
           Resume
         </a>
