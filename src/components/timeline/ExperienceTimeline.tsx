@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { EXPERIENCE, EDUCATION, CERTIFICATIONS } from "@/data/portfolio";
+import { EXPERIENCE } from "@/data/portfolio";
 import { Reveal, SectionLabel } from "@/components/ui/SectionLabel";
 
 export function ExperienceTimeline() {
@@ -58,45 +58,6 @@ export function ExperienceTimeline() {
               </Reveal>
             ))}
           </div>
-        </div>
-
-        <div className="mt-20 grid md:grid-cols-2 gap-5">
-          <Reveal>
-            <div className="glass rounded-2xl p-6">
-              <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary mb-4">
-                Education
-              </div>
-              <ul className="space-y-4">
-                {EDUCATION.map((ed) => (
-                  <li key={ed.school}>
-                    <div className="text-text-primary">{ed.school}</div>
-                    <div className="text-sm text-text-secondary">{ed.detail}</div>
-                    <div className="font-mono text-[10px] uppercase tracking-wider text-text-tertiary mt-1">
-                      {ed.period}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="glass rounded-2xl p-6">
-              <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary mb-4">
-                Certifications
-              </div>
-              <ul className="space-y-3">
-                {CERTIFICATIONS.map((c) => (
-                  <li
-                    key={c}
-                    className="text-text-secondary text-sm leading-relaxed flex gap-2"
-                  >
-                    <span className="text-accent-cyan font-mono">▸</span>
-                    {c}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>
