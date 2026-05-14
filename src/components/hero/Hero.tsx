@@ -1,0 +1,119 @@
+import { motion } from "framer-motion";
+import { Portrait } from "./Portrait";
+import { PROFILE } from "@/data/portfolio";
+import { fadeUp, stagger } from "@/lib/motion";
+
+export function Hero() {
+  return (
+    <section id="top" className="relative min-h-[100svh] pt-32 md:pt-28 pb-20 px-6 md:px-10">
+      <div className="mx-auto max-w-7xl grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-8 items-center">
+        <motion.div
+          variants={stagger(0.1, 0.12)}
+          initial="hidden"
+          animate="show"
+          className="order-2 lg:order-1"
+        >
+          <motion.div
+            variants={fadeUp}
+            className="font-mono text-[11px] uppercase tracking-[0.32em] text-text-tertiary mb-6 flex items-center gap-3"
+          >
+            <span className="h-px w-8 bg-text-tertiary/60" />
+            {PROFILE.role}
+          </motion.div>
+
+          <motion.h1
+            variants={fadeUp}
+            className="font-display font-semibold text-[clamp(3rem,8vw,7rem)] leading-[0.92] tracking-tight text-text-primary"
+          >
+            {PROFILE.firstName}
+            <br />
+            <span className="bg-gradient-to-r from-text-primary via-text-primary to-text-secondary bg-clip-text text-transparent">
+              {PROFILE.lastName}
+            </span>
+          </motion.h1>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-8 max-w-xl text-balance text-lg md:text-xl text-text-secondary leading-relaxed"
+          >
+            {PROFILE.tagline}
+          </motion.p>
+          <motion.p
+            variants={fadeUp}
+            className="mt-3 max-w-xl text-sm md:text-base text-text-tertiary leading-relaxed"
+          >
+            {PROFILE.summary}
+          </motion.p>
+
+          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-3">
+            <a
+              href="#projects"
+              className="group relative overflow-hidden rounded-full px-6 py-3 text-sm font-medium glass-strong hover:bg-white/10 transition-all ease-cinematic"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                View Projects
+                <span className="inline-block transition-transform duration-500 ease-cinematic group-hover:translate-x-0.5">
+                  →
+                </span>
+              </span>
+              <span
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background:
+                    "radial-gradient(60% 100% at 50% 50%, color-mix(in oklab, var(--accent-indigo) 30%, transparent), transparent)",
+                }}
+              />
+            </a>
+            <a
+              href={PROFILE.resume}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full px-6 py-3 text-sm font-medium glass hover:bg-white/8 transition-all ease-cinematic"
+            >
+              Download Resume
+            </a>
+            <a
+              href="#contact"
+              className="rounded-full px-6 py-3 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors ease-cinematic"
+            >
+              Contact →
+            </a>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            className="mt-14 grid grid-cols-3 gap-6 max-w-md font-mono"
+          >
+            {[
+              { v: "<500ms", l: "retrieval" },
+              { v: "10k+", l: "vectors indexed" },
+              { v: "p95 <150ms", l: "API latency" },
+            ].map((s) => (
+              <div key={s.l}>
+                <div className="text-text-primary text-sm md:text-base">{s.v}</div>
+                <div className="text-text-tertiary text-[10px] uppercase tracking-[0.18em] mt-1">
+                  {s.l}
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        <div className="order-1 lg:order-2">
+          <Portrait />
+        </div>
+      </div>
+
+      {/* scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary"
+      >
+        scroll
+        <span className="h-10 w-px bg-gradient-to-b from-text-tertiary to-transparent" />
+      </motion.div>
+    </section>
+  );
+}
