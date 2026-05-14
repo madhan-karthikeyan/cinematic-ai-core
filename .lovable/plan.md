@@ -1,108 +1,128 @@
-# Cinematic AI Systems Portfolio — Madhan Karthikeyan
 
-A dark, glass, architecturally-minimal portfolio that positions Madhan as an **AI Systems Engineer / ML Infrastructure Builder / Retrieval & Backend Systems Developer**. All copy, projects, metrics, and stacks are pulled verbatim from the attached resume — nothing fabricated.
+# Cinematic Portfolio Refinement Plan
 
-## Stack note (important)
+## 1. Hero Section
 
-This Lovable project runs on **TanStack Start + Vite + React + Tailwind v4**, not Next.js. I'll honor the design and motion intent fully (Tailwind, Framer Motion, Lenis smooth scroll, light GSAP only if needed), but routing/SSR will use TanStack Start. The end result is visually identical to a Next.js build — no functional compromise.
+**File: `src/components/hero/Hero.tsx`**
+- Reduce top padding from `pt-36 md:pt-40` → `pt-20 md:pt-24` to shift composition up ~6–8vh; trim bottom padding accordingly.
+- **Remove** the entire `CAPABILITIES` strip (Semantic Retrieval / Vector Infrastructure / Async Pipelines / Production ML Systems) and the `CAPABILITIES` constant.
+- Slightly reduce heading scale: `clamp(2.25rem, 5.6vw, 4.75rem)`.
+- Increase spacing between heading and tagline (`mt-10`), tighten paragraph max-width (`max-w-sm`), refine summary text hierarchy.
+- Soften ambient lighting opacity (already dual-tone) — slight reduction of blob saturation.
 
-## Visual system
+**File: `src/components/hero/Portrait.tsx`**
+- Fix visible cropped edges by:
+  - Replacing the elliptical mask with a softer **layered alpha feather**: a radial mask plus a vertical linear-gradient mask combined via `mask-composite` so shoulders dissolve into the bg.
+  - Adding an inner atmospheric haze layer (low-opacity radial color-mix with `--bg-primary`).
+  - Adding a soft volumetric "aura" ring behind the silhouette (blurred radial in cyan/amber matching portrait lighting).
+  - Strengthening the bottom & side fade gradients so no hard edge is visible at any viewport.
+- Keep breathing animation but slow it (12s) and reduce travel to 6px.
 
-- **Background**: matte black (`#050505`), subtle radial glows, low-opacity grid texture, faint gradient mesh, optional film-grain overlay.
-- **Palette tokens** (added to `src/styles.css` in oklch):
-  - `--bg-primary #050505`, `--bg-secondary #0B0F14`, `--bg-tertiary #111827`
-  - `--accent-indigo #4F46E5`, `--accent-cyan #3B82F6`, `--accent-violet #8B5CF6`
-  - `--text-primary #E5E7EB`, `--text-secondary #9CA3AF`
-  - Glass surface tokens: border, backdrop-blur, soft shadow
-- **Typography** (loaded via Google Fonts / Fontshare):
-  - Display: **Clash Display**
-  - Body: **Inter**
-  - Mono / metrics: **JetBrains Mono**
-- **Motion curve**: `cubic-bezier(0.22, 1, 0.36, 1)` everywhere. Only fade, blur, subtle scale, soft float, gradient shift. No bounce, no parallax abuse.
-- **Smooth scroll**: Lenis, lightly weighted.
-- **Cursor**: subtle glow follow on desktop only.
+## 2. Navbar
 
-## Architecture
+**File: `src/components/layout/GlassNavbar.tsx`**
+- Replace `NAV` with: Projects, Systems, Skills, Experience, Contact.
+- Hash targets: `#projects`, `#systems`, `#skills`, `#experience`, `#contact`.
+- Reduce border opacity further (`white/[0.04]`), drop the cyan dot accent on MK (use neutral), thinner padding (`py-1`), smaller pill.
+- Smoother underline: animate `scaleX` over 600ms with cinematic ease, slightly thicker (0.5px → subtle), neutral color.
 
-```text
-src/
-  routes/
-    __root.tsx              // global layout, Lenis provider, fonts, meta
-    index.tsx               // single long-scroll portfolio
-  components/
-    intro/IntroLoader.tsx
-    layout/GlassNavbar.tsx
-    layout/BackgroundFX.tsx     // grid + mesh + grain + radial glows
-    layout/SmoothScroll.tsx     // Lenis wrapper
-    hero/Hero.tsx
-    hero/Portrait.tsx           // transparent PNG + rim/key lighting
-    hero/FloatingWidgets.tsx
-    projects/FeaturedProjects.tsx
-    projects/ProjectCase.tsx    // alternating L/R case-study block
-    projects/ArchitectureDiagram.tsx
-    philosophy/Philosophy.tsx
-    expertise/Expertise.tsx     // categorized glass panels
-    timeline/Experience.tsx
-    systems/ArchitectureShowcase.tsx  // animated nodes/edges
-    contact/Contact.tsx
-    layout/Footer.tsx
-    ui/GlassPanel.tsx, AnimatedCounter.tsx, SectionLabel.tsx
-  assets/
-    portrait.png              // copied from upload
-  data/
-    projects.ts, experience.ts, expertise.ts   // resume-sourced
-  lib/
-    motion.ts                 // shared variants + easing
-public/
-    resume.pdf                // copied from upload for download
-```
+## 3. Routing Section IDs
 
-## Sections (resume-faithful)
+Update section IDs / order in `src/routes/index.tsx` so `#systems` → ArchitectureShowcase (renamed conceptually to systems map), `#skills` → new Skills graph (replaces `Expertise`). Final order:
+`Hero → FeaturedProjects (#projects) → ArchitectureShowcase (#systems) → SkillsGraph (#skills) → ExperienceTimeline (#experience) → Contact (#contact)`. Remove `Philosophy` + `Expertise` from render (Philosophy stays only if needed; per direction, prefer leaner page → remove both).
 
-1. **Intro Loader** (~2.2s, skippable): mono terminal lines — `Initializing retrieval systems…` → `Loading semantic pipelines…` → `Embedding portfolio interface…` → `System online.` → blur-fade out.
+## 4. Projects Section — Bespoke Topology Per Project
 
-2. **Glass Navbar**: floating, centered. Items: Projects · Experience · Systems · Stack · Contact + right-side Resume pill. Transparent → blurred dark glass on scroll.
+**Remove globally** (in `FeaturedProjects.tsx`):
+- The duplicated metric grid below the diagram (the "two-metric mini cards").
+- The repeated "architecture / live" header label.
+- The repetitive stack chip rows beneath visuals.
+- Stack chips can stay once on the copy side, condensed.
 
-3. **Hero**
-   - Left: `Madhan / Karthikeyan` (Clash Display, large, tight tracking) · subtitle `AI Systems Engineer` · tagline `Building retrieval systems, ML infrastructure, and intelligent backend architectures.` · supporting line from resume summary · CTAs `View Projects` / `Download Resume` / `Contact`.
-   - Right: transparent portrait, oversized, edges fading to black, soft blue rim + warm key light via layered radial gradients and drop-shadows; slow float + breathing.
-   - Floating glass widgets (mono labels): `Semantic Retrieval · <500ms`, `FAISS + ChromaDB`, `Redis · Celery`, `Production ML Systems`.
+**File: `src/components/projects/PipelineDiagram.tsx`** → delete (no longer used).
 
-4. **Featured Projects** — alternating L/R cinematic case studies. Each: category label, name, 1–2 line description, stack chips, animated metric counters, hover-revealed mini architecture diagram, soft border glow.
-   - **MediCore** — Full-Stack Distributed System · Flask · Vue · Celery · Redis · PostgreSQL · JWT · Razorpay · ~40 REST APIs · `<150ms p95` · event-driven cache invalidation.
-   - **Satellite Image Search System** — Embedding-Based Geospatial Retrieval · RemoteCLIP · ChromaDB · DBSCAN · FastAPI · Cesium · `10,000+ images` · `<500ms` · 4-band GeoTIFF.
-   - **Responsible Financial AI — RAG System** — LlamaIndex · ChromaDB · FastAPI · React · `<2s` · `1,000+ docs` · source-cited.
-   - **DriftBench-TS** — Config-driven benchmarking · 5+ forecasters · 8+ drift detectors · 6 datasets · Flask + React dashboard.
-   - **Cluster-Aware Semantic Retrieval & Caching** — GMM + FAISS + FastAPI · ~30% latency reduction · ~35% cache hit rate.
+**New folder: `src/components/projects/visuals/`** — one bespoke SVG component per project. Each is an interactive Framer Motion + SVG visualization with hover-aware highlights, animated signal pulses (`<animateMotion>` along paths), and inline contextual metric labels embedded inside the diagram (no separate KPI cards):
 
-5. **Engineering Philosophy** — centered statement on faint animated grid: *"I enjoy building systems where machine learning, retrieval infrastructure, and backend engineering intersect."* + supporting line.
+- `MediCoreTopology.tsx` — central API gateway node, orbiting microservices (Auth, Billing, Records, Notifications), Celery worker cluster ring, Redis event bus arcs, Postgres persistence layer at base. Animated async pulses along event edges; small inline `p95 <150ms` tag near gateway.
+- `SatelliteRetrievalMap.tsx` — abstract hemisphere/orbital arc layout with floating geo-cluster blobs (DBSCAN regions as soft ellipses), embedding similarity edges connecting clusters to a central RemoteCLIP node, Cesium-style latitude curves in background. Hover a cluster → shows similarity rays.
+- `RagOrchestrationGraph.tsx` — left: semantic document cloud (jittered dots), middle: branching retrieval paths converging into reranker, right: context assembly node feeding LLM with citation tracer lines back to source dots (animated trace).
+- `DriftBenchTemporal.tsx` — horizontal timeline waveform (sine + noise SVG path), drift event pulses (vertical glints), branching forecast streams above, retraining trigger markers below, small benchmark grid in corner.
+- `ClusterRetrievalTopology.tsx` — flagship: 2D embedding-space with GMM partition ellipses (rotated), floating cluster centroids, semantic cache region overlay, FAISS fallback dashed edges activating on hover, dynamic routing path that lights up when hovering "Query" entry node.
 
-6. **Technical Expertise** — four categorized glass panels (no bars, no logo soup):
-   - **Retrieval Systems**: FAISS, ChromaDB, LlamaIndex, RemoteCLIP/CLIP, Vector Search, Embedding Pipelines, Semantic Caching
-   - **ML Infrastructure**: PyTorch, Scikit-learn, LightGBM, YOLOv8, Time-Series Forecasting, GMM, DBSCAN, RAG Pipelines
-   - **Backend Systems**: Python, FastAPI, Flask, REST, JWT, Celery, Redis, Distributed Task Queues
-   - **Systems & DevOps**: Docker, AWS (EC2, S3), Event-Driven Architecture, Async Pipelines, PostgreSQL, MongoDB, Git
+Each visual:
+- Uses `viewBox` + responsive container.
+- Shares a small helper `src/components/projects/visuals/primitives.tsx` for: animated edge with motion pulse, hover-aware node, ambient grid backdrop.
+- Inline metrics rendered as monospaced floating labels at meaningful positions.
 
-7. **Experience Timeline** — vertical line that grows on scroll:
-   - **NIC, Govt. of India — AI Engineer Intern** (May–Jul 2025): triage-to-resolution pipeline, VLM + vector index over 150+ docs / 4GB, >24h → <1min; sub-second retrieval.
-   - **GloballyGI — Computer Vision Intern** (Jan–Apr 2025): YOLOv8n + D-FINE, 80–85% mAP / 50 classes / 5,000 images, ~25% latency reduction.
-   - Education chips: VIT (CGPA 8.80) · IIT Madras BS Data Science.
-   - Certifications: Microsoft Azure AI Engineer Associate · IIT Madras Advanced Certificate ML & DS.
+**File: `src/components/projects/FeaturedProjects.tsx`**
+- Map project `id` → bespoke visual component.
+- Replace the right-side glass card content: remove header label, remove bottom mini-metrics; let the visual be the centerpiece, full-bleed inside a thinner glass frame (border only, no inner padding chrome).
+- Keep copy side (category, name, subtitle, description) but remove redundant chip row.
 
-8. **Architecture Showcase — "Systems Thinking"** — animated SVG diagram: `Input → Embedding Pipeline → Semantic Cache → Vector Retrieval → LLM / Reranker → Response`. Nodes light up and edges draw via `pathLength` as the section enters viewport (Framer Motion `useInView` + `whileInView`).
+**Data: `src/data/portfolio.ts`**
+- Remove `pipeline` arrays (no longer needed).
+- Keep `metrics` only if referenced inside visuals; otherwise drop.
 
-9. **Contact** — `Let's build intelligent systems.` + glass pill buttons: GitHub, LinkedIn, Email (`madhankrthik@gmail.com`), Resume. Footer: `Designed & engineered by Madhan Karthikeyan`.
+## 5. Skills Section — Interactive Systems Graph
 
-## Performance, SEO, A11y
+**New file: `src/components/skills/SkillsGraph.tsx`** (section id `#skills`).
+- Replaces `Expertise.tsx` in render.
+- Central node: **AI SYSTEMS**.
+- 6 cluster hubs around it:
+  - Retrieval Infrastructure → FAISS, ChromaDB, LlamaIndex, RemoteCLIP
+  - Backend Systems → FastAPI, Flask, REST, JWT
+  - ML Infrastructure → PyTorch, LightGBM, YOLOv8, Scikit
+  - Distributed Systems → Redis, Celery, PostgreSQL, MongoDB
+  - Geospatial Retrieval → Cesium, DBSCAN, GeoTIFF, GMM
+  - RAG Pipelines → LlamaIndex, Reranker, ChromaDB, Citation
+- SVG-based, ~1100×680 viewBox.
+- Interactions: hover node → connected nodes brighten, others dim to ~25% opacity, edges between active set pulse; signal pulses travel continuously at low opacity on all edges.
+- Subtle parallax on mouse move (small translate on layer groups).
+- Replace and **delete the "Core Capabilities" strip** entirely (currently in `ArchitectureShowcase`).
 
-- Per-route `head()` with title, description, OG tags, JSON-LD `Person` schema (name, jobTitle, alumniOf, sameAs links).
-- Single H1 (Hero name), semantic landmarks, alt text on portrait, focus-visible rings on all interactive glass elements, `prefers-reduced-motion` disables float/scroll animations and skips intro loader.
-- Portrait shipped as optimized PNG via `src/assets` import; preload hero font subsets; lazy-init Lenis on client only.
+## 6. Architecture / Systems Showcase
 
-## Mobile
+**File: `src/components/systems/ArchitectureShowcase.tsx`**
+- Keep the existing topology graph but:
+  - Remove the "Core Capabilities" rail at the bottom.
+  - Reduce glow intensity on edges/nodes (`opacity` cuts on filters).
+  - Soften cluster hub colors (mix toward neutral 30%).
+  - Section id remains `#systems`.
 
-- Portrait centered above stacked text, widgets become a 2-col mono chip row, nav collapses to glass pill with sheet menu, case studies become single-column with the architecture diagram below the copy. Cinematic feel preserved; motion intensity reduced.
+## 7. Animation & Visual Polish (global)
 
-## Out of scope (explicitly skipped)
+- Reduce blur radii on background blobs (`-30%`).
+- Reduce gradient opacity globally where saturation feels neon.
+- Standardize entrance reveal: slower (`1.1s`) with `cubic-bezier(0.22,1,0.36,1)`.
+- Add subtle ambient drift (8–14s loops) on background mesh in `BackgroundFX`.
 
-- Command palette, ambient sound, dynamic theme glow per section — the brief marks these "optional"; I'll skip unless you ask, to keep the build tight and performant.
+## 8. Files Touched Summary
+
+Edit:
+- `src/components/hero/Hero.tsx`
+- `src/components/hero/Portrait.tsx`
+- `src/components/layout/GlassNavbar.tsx`
+- `src/components/projects/FeaturedProjects.tsx`
+- `src/components/systems/ArchitectureShowcase.tsx`
+- `src/components/layout/BackgroundFX.tsx`
+- `src/routes/index.tsx`
+- `src/data/portfolio.ts`
+- `src/styles.css` (tone down accent intensities if needed)
+
+Create:
+- `src/components/projects/visuals/primitives.tsx`
+- `src/components/projects/visuals/MediCoreTopology.tsx`
+- `src/components/projects/visuals/SatelliteRetrievalMap.tsx`
+- `src/components/projects/visuals/RagOrchestrationGraph.tsx`
+- `src/components/projects/visuals/DriftBenchTemporal.tsx`
+- `src/components/projects/visuals/ClusterRetrievalTopology.tsx`
+- `src/components/skills/SkillsGraph.tsx`
+
+Delete:
+- `src/components/projects/PipelineDiagram.tsx`
+- `src/components/expertise/Expertise.tsx`
+- `src/components/philosophy/Philosophy.tsx` (lean page direction)
+
+## Outcome
+
+A leaner, art-directed page: cinematic hero with embedded portrait, refined glass navbar, five uniquely-architected interactive project topologies, an interactive skills constellation, and the existing systems map cleaned of redundant rails — communicating production AI systems engineering rather than a developer template.
