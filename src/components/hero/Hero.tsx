@@ -3,10 +3,43 @@ import { Portrait } from "./Portrait";
 import { PROFILE } from "@/data/portfolio";
 import { fadeUp, stagger } from "@/lib/motion";
 
+const CAPABILITIES = [
+  "Semantic Retrieval",
+  "Vector Infrastructure",
+  "Async Pipelines",
+  "Production ML Systems",
+];
+
 export function Hero() {
   return (
-    <section id="top" className="relative min-h-[100svh] pt-32 md:pt-28 pb-20 px-6 md:px-10">
-      <div className="mx-auto max-w-7xl grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-8 items-center">
+    <section
+      id="top"
+      className="relative min-h-[100svh] pt-36 md:pt-40 pb-24 md:pb-32 px-6 md:px-12"
+    >
+      {/* environmental dual-tone lighting */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        animate={{ opacity: [0.85, 1, 0.85] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div
+          className="absolute -top-40 -left-32 h-[60vh] w-[60vh] rounded-full blur-[120px] opacity-50"
+          style={{
+            background:
+              "radial-gradient(closest-side, color-mix(in oklab, var(--accent-cyan) 30%, transparent), transparent 75%)",
+          }}
+        />
+        <div
+          className="absolute -bottom-32 -right-32 h-[65vh] w-[65vh] rounded-full blur-[120px] opacity-45"
+          style={{
+            background:
+              "radial-gradient(closest-side, color-mix(in oklab, var(--accent-warm) 26%, transparent), transparent 75%)",
+          }}
+        />
+      </motion.div>
+
+      <div className="mx-auto max-w-7xl grid lg:grid-cols-[1.05fr_1fr] gap-14 lg:gap-10 items-center">
         <motion.div
           variants={stagger(0.1, 0.12)}
           initial="hidden"
@@ -15,15 +48,15 @@ export function Hero() {
         >
           <motion.div
             variants={fadeUp}
-            className="font-mono text-[11px] uppercase tracking-[0.32em] text-text-tertiary mb-6 flex items-center gap-3"
+            className="font-mono text-[10px] uppercase tracking-[0.36em] text-text-tertiary mb-7 flex items-center gap-3"
           >
-            <span className="h-px w-8 bg-text-tertiary/60" />
+            <span className="h-px w-8 bg-text-tertiary/50" />
             {PROFILE.role}
           </motion.div>
 
           <motion.h1
             variants={fadeUp}
-            className="font-display font-semibold text-[clamp(3rem,8vw,7rem)] leading-[0.92] tracking-tight text-text-primary"
+            className="font-display font-semibold text-[clamp(2.5rem,6.4vw,5.5rem)] leading-[0.95] tracking-tight text-text-primary"
           >
             {PROFILE.firstName}
             <br />
@@ -34,13 +67,13 @@ export function Hero() {
 
           <motion.p
             variants={fadeUp}
-            className="mt-8 max-w-xl text-balance text-lg md:text-xl text-text-secondary leading-relaxed"
+            className="mt-8 max-w-md text-balance text-[17px] md:text-[18px] text-text-secondary leading-relaxed"
           >
             {PROFILE.tagline}
           </motion.p>
           <motion.p
             variants={fadeUp}
-            className="mt-3 max-w-xl text-sm md:text-base text-text-tertiary leading-relaxed"
+            className="mt-3 max-w-md text-sm text-text-tertiary leading-relaxed"
           >
             {PROFILE.summary}
           </motion.p>
@@ -56,13 +89,6 @@ export function Hero() {
                   →
                 </span>
               </span>
-              <span
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background:
-                    "radial-gradient(60% 100% at 50% 50%, color-mix(in oklab, var(--accent-indigo) 30%, transparent), transparent)",
-                }}
-              />
             </a>
             <a
               href={PROFILE.resume}
@@ -74,27 +100,26 @@ export function Hero() {
             </a>
             <a
               href="#contact"
-              className="rounded-full px-6 py-3 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors ease-cinematic"
+              className="rounded-full px-5 py-3 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors ease-cinematic"
             >
               Contact →
             </a>
           </motion.div>
 
+          {/* system capability strip */}
           <motion.div
             variants={fadeUp}
-            className="mt-14 grid grid-cols-3 gap-6 max-w-md font-mono"
+            className="mt-16 flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[10px] uppercase tracking-[0.28em] text-text-tertiary"
           >
-            {[
-              { v: "<500ms", l: "retrieval" },
-              { v: "10k+", l: "vectors indexed" },
-              { v: "p95 <150ms", l: "API latency" },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="text-text-primary text-sm md:text-base">{s.v}</div>
-                <div className="text-text-tertiary text-[10px] uppercase tracking-[0.18em] mt-1">
-                  {s.l}
-                </div>
-              </div>
+            {CAPABILITIES.map((c, i) => (
+              <span key={c} className="flex items-center gap-5">
+                <span className="hover:text-text-secondary transition-colors duration-500 ease-cinematic">
+                  {c}
+                </span>
+                {i < CAPABILITIES.length - 1 && (
+                  <span aria-hidden className="h-px w-6 bg-text-tertiary/25" />
+                )}
+              </span>
             ))}
           </motion.div>
         </motion.div>
@@ -104,15 +129,14 @@ export function Hero() {
         </div>
       </div>
 
-      {/* scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary"
+        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.32em] text-text-tertiary/70"
       >
         scroll
-        <span className="h-10 w-px bg-gradient-to-b from-text-tertiary to-transparent" />
+        <span className="h-10 w-px bg-gradient-to-b from-text-tertiary/60 to-transparent" />
       </motion.div>
     </section>
   );
