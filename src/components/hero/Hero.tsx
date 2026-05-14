@@ -3,38 +3,31 @@ import { Portrait } from "./Portrait";
 import { PROFILE } from "@/data/portfolio";
 import { fadeUp, stagger } from "@/lib/motion";
 
-const CAPABILITIES = [
-  "Semantic Retrieval",
-  "Vector Infrastructure",
-  "Async Pipelines",
-  "Production ML Systems",
-];
-
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-[100svh] pt-36 md:pt-40 pb-24 md:pb-32 px-6 md:px-12"
+      className="relative min-h-[100svh] pt-20 md:pt-24 pb-20 md:pb-28 px-6 md:px-12"
     >
       {/* environmental dual-tone lighting */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
-        animate={{ opacity: [0.85, 1, 0.85] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.78, 0.92, 0.78] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       >
         <div
-          className="absolute -top-40 -left-32 h-[60vh] w-[60vh] rounded-full blur-[120px] opacity-50"
+          className="absolute -top-40 -left-32 h-[58vh] w-[58vh] rounded-full blur-[140px] opacity-45"
           style={{
             background:
-              "radial-gradient(closest-side, color-mix(in oklab, var(--accent-cyan) 30%, transparent), transparent 75%)",
+              "radial-gradient(closest-side, color-mix(in oklab, var(--accent-cyan) 24%, transparent), transparent 75%)",
           }}
         />
         <div
-          className="absolute -bottom-32 -right-32 h-[65vh] w-[65vh] rounded-full blur-[120px] opacity-45"
+          className="absolute -bottom-32 -right-32 h-[62vh] w-[62vh] rounded-full blur-[140px] opacity-40"
           style={{
             background:
-              "radial-gradient(closest-side, color-mix(in oklab, var(--accent-warm) 26%, transparent), transparent 75%)",
+              "radial-gradient(closest-side, color-mix(in oklab, var(--accent-warm) 22%, transparent), transparent 75%)",
           }}
         />
       </motion.div>
@@ -56,7 +49,7 @@ export function Hero() {
 
           <motion.h1
             variants={fadeUp}
-            className="font-display font-semibold text-[clamp(2.5rem,6.4vw,5.5rem)] leading-[0.95] tracking-tight text-text-primary"
+            className="font-display font-semibold text-[clamp(2.25rem,5.6vw,4.75rem)] leading-[0.96] tracking-tight text-text-primary"
           >
             {PROFILE.firstName}
             <br />
@@ -67,18 +60,18 @@ export function Hero() {
 
           <motion.p
             variants={fadeUp}
-            className="mt-8 max-w-md text-balance text-[17px] md:text-[18px] text-text-secondary leading-relaxed"
+            className="mt-12 max-w-sm text-balance text-[16.5px] md:text-[17.5px] text-text-secondary leading-relaxed"
           >
             {PROFILE.tagline}
           </motion.p>
           <motion.p
             variants={fadeUp}
-            className="mt-3 max-w-md text-sm text-text-tertiary leading-relaxed"
+            className="mt-4 max-w-sm text-[13.5px] text-text-tertiary leading-relaxed"
           >
             {PROFILE.summary}
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-3">
+          <motion.div variants={fadeUp} className="mt-12 flex flex-wrap items-center gap-3">
             <a
               href="#projects"
               className="group relative overflow-hidden rounded-full px-6 py-3 text-sm font-medium glass-strong hover:bg-white/10 transition-all ease-cinematic"
@@ -94,7 +87,7 @@ export function Hero() {
               href={PROFILE.resume}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full px-6 py-3 text-sm font-medium glass hover:bg-white/8 transition-all ease-cinematic"
+              className="rounded-full px-6 py-3 text-sm font-medium glass hover:bg-white/[0.08] transition-all ease-cinematic"
             >
               Download Resume
             </a>
@@ -104,23 +97,6 @@ export function Hero() {
             >
               Contact →
             </a>
-          </motion.div>
-
-          {/* system capability strip */}
-          <motion.div
-            variants={fadeUp}
-            className="mt-16 flex flex-wrap items-center gap-x-5 gap-y-3 font-mono text-[10px] uppercase tracking-[0.28em] text-text-tertiary"
-          >
-            {CAPABILITIES.map((c, i) => (
-              <span key={c} className="flex items-center gap-5">
-                <span className="hover:text-text-secondary transition-colors duration-500 ease-cinematic">
-                  {c}
-                </span>
-                {i < CAPABILITIES.length - 1 && (
-                  <span aria-hidden className="h-px w-6 bg-text-tertiary/25" />
-                )}
-              </span>
-            ))}
           </motion.div>
         </motion.div>
 
