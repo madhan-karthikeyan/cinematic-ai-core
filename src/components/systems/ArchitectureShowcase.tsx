@@ -139,7 +139,7 @@ export function ArchitectureShowcase() {
     <section id="systems" className="relative px-6 md:px-10 py-28 md:py-40 overflow-hidden">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mb-14 max-w-3xl">
-          <SectionLabel index="05">Systems Architecture</SectionLabel>
+          <SectionLabel index="02">Systems Architecture</SectionLabel>
           <h2 className="mt-5 font-display text-4xl md:text-5xl tracking-tight text-text-primary text-balance">
             Designing scalable systems where retrieval, reasoning, caching, and orchestration converge.
           </h2>

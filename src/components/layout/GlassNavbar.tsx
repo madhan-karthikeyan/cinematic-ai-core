@@ -11,6 +11,8 @@ const NAV = [
 
 export function GlassNavbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("");
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -18,12 +20,29 @@ export function GlassNavbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActive(`#${entry.target.id}`);
+          }
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+
+    const sections = NAV.map((n) => document.getElementById(n.href.slice(1))).filter(Boolean);
+    sections.forEach((s) => s && observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-      className="fixed top-5 left-1/2 z-50 -translate-x-1/2 w-[min(820px,calc(100%-2rem))]"
+      className="fixed top-5 left-1/2 z-50 -translate-x-1/2 w-[min(1040px,calc(100%-2rem))]"
     >
       <nav
         className={`flex items-center justify-between gap-4 rounded-full pl-4 pr-2 py-1 ease-cinematic transition-all duration-700 ${
@@ -44,10 +63,20 @@ export function GlassNavbar() {
             <li key={n.href}>
               <a
                 href={n.href}
-                className="relative px-3 py-1.5 rounded-full hover:text-text-primary transition-colors duration-500 ease-cinematic group"
+                className={`relative px-3 py-1.5 rounded-full transition-colors duration-500 ease-cinematic group ${
+                  active === n.href
+                    ? "text-text-primary"
+                    : "text-text-secondary/90 hover:text-text-primary"
+                }`}
               >
                 {n.label}
-                <span className="absolute left-3 right-3 bottom-1 h-px origin-left scale-x-0 bg-text-primary/35 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100" />
+                <span
+                  className={`absolute left-3 right-3 bottom-1 h-px transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    active === n.href
+                      ? "scale-x-100 bg-text-primary/50"
+                      : "scale-x-0 bg-text-primary/35 group-hover:scale-x-100"
+                  }`}
+                />
               </a>
             </li>
           ))}

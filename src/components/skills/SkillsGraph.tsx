@@ -136,7 +136,7 @@ export function SkillsGraph() {
     <section id="skills" className="relative px-6 md:px-10 py-28 md:py-40 overflow-hidden">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mb-14 max-w-3xl">
-          <SectionLabel index="04">Skills Constellation</SectionLabel>
+          <SectionLabel index="03">Skills Constellation</SectionLabel>
           <h2 className="mt-5 font-display text-4xl md:text-5xl tracking-tight text-text-primary text-balance">
             An interconnected stack — every node is a discipline practiced in production.
           </h2>

@@ -19,19 +19,21 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Portfolio of Madhan Karthikeyan — AI Systems Engineer building retrieval systems, ML infrastructure, and intelligent backend architectures.",
+          "AI Systems Engineer specializing in retrieval systems, ML infrastructure, distributed backend engineering, and production-grade machine learning systems.",
       },
       { property: "og:title", content: "Madhan Karthikeyan — AI Systems Engineer" },
       {
         property: "og:description",
         content:
-          "Retrieval systems, ML infrastructure, and intelligent backend architectures.",
+          "Engineering intelligent systems that scale — from vector retrieval pipelines to production ML infrastructure.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://madhan-karthikeyan.dev" },
+      { property: "og:image", content: "/og-image.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "/og-image.png" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://madhan-karthikeyan.dev" }],
     scripts: [
       {
         type: "application/ld+json",

@@ -28,7 +28,7 @@ export function BackgroundFX() {
       />
 
       {/* film grain */}
-      <div className="absolute inset-0 noise opacity-[0.04] mix-blend-overlay" />
+      <div className="absolute inset-0 noise opacity-[0.06] mix-blend-overlay" />
     </div>
   );
 }

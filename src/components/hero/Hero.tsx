@@ -17,22 +17,50 @@ export function Hero() {
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       >
         <div
-          className="absolute -top-40 -left-32 h-[58vh] w-[58vh] rounded-full blur-[140px] opacity-45"
+          className="absolute -top-56 -left-44 h-[58vh] w-[58vh] rounded-full blur-[140px] opacity-22"
           style={{
             background:
               "radial-gradient(closest-side, color-mix(in oklab, var(--accent-cyan) 24%, transparent), transparent 75%)",
           }}
         />
         <div
-          className="absolute -bottom-32 -right-32 h-[62vh] w-[62vh] rounded-full blur-[140px] opacity-40"
+          className="absolute -bottom-52 -right-44 h-[62vh] w-[62vh] rounded-full blur-[140px] opacity-18"
           style={{
             background:
               "radial-gradient(closest-side, color-mix(in oklab, var(--accent-warm) 22%, transparent), transparent 75%)",
           }}
         />
+        <div
+          className="absolute top-[18%] left-[30%] h-[75vh] w-[80vh] rounded-full blur-[200px] opacity-[0.07]"
+          style={{
+            background:
+              "radial-gradient(closest-side, color-mix(in oklab, var(--accent-cyan) 16%, transparent), transparent 75%)",
+          }}
+        />
+        <div
+          className="absolute top-[38%] left-[15%] right-[25%] h-px blur-[3px] opacity-[0.04]"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, color-mix(in oklab, var(--accent-cyan) 15%, transparent) 50%, transparent)",
+          }}
+        />
+        <div
+          className="absolute top-[5%] left-[5%] h-[90vh] w-[120vh] rounded-full blur-[300px] opacity-[0.045]"
+          style={{
+            background:
+              "radial-gradient(closest-side, color-mix(in oklab, var(--accent-cyan) 12%, transparent), transparent 75%)",
+          }}
+        />
+        <div
+          className="absolute top-[12%] left-[20%] h-[80vh] w-[100vh] rounded-full blur-[280px] opacity-[0.035]"
+          style={{
+            background:
+              "radial-gradient(closest-side, color-mix(in oklab, color-mix(in oklab, var(--accent-indigo) 40%, var(--accent-cyan)) 14%, transparent), transparent 75%)",
+          }}
+        />
       </motion.div>
 
-      <div className="mx-auto max-w-7xl grid lg:grid-cols-[1.05fr_1fr] gap-14 lg:gap-10 items-center">
+      <div className="mx-auto max-w-7xl grid lg:grid-cols-[0.95fr_1.05fr] gap-14 lg:gap-8 items-start">
         <motion.div
           variants={stagger(0.1, 0.12)}
           initial="hidden"
@@ -100,20 +128,21 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        <div className="order-1 lg:order-2">
+        <div className="order-1 lg:order-2 lg:-translate-y-[5.25rem] lg:translate-x-12">
           <Portrait />
         </div>
       </div>
 
-      <motion.div
+      <motion.a
+        href="#projects"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.32em] text-text-tertiary/70"
+        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.32em] text-text-tertiary/70 hover:text-text-secondary transition-colors ease-cinematic"
       >
         scroll
         <span className="h-10 w-px bg-gradient-to-b from-text-tertiary/60 to-transparent" />
-      </motion.div>
+      </motion.a>
     </section>
   );
 }

@@ -14,7 +14,7 @@ export function Contact() {
       <div className="mx-auto max-w-4xl text-center">
         <Reveal>
           <div className="font-mono text-[11px] uppercase tracking-[0.32em] text-text-tertiary">
-            06 — Contact
+            05 — Contact
           </div>
           <h2 className="mt-6 font-display text-5xl md:text-7xl tracking-tight text-text-primary text-balance">
             Let's build intelligent systems.
@@ -46,7 +46,7 @@ export function Contact() {
 
         <Reveal delay={0.2}>
           <div className="mt-12 font-mono text-xs text-text-tertiary">
-            {PROFILE.email} · {PROFILE.phone}
+            {PROFILE.email}
           </div>
         </Reveal>
       </div>

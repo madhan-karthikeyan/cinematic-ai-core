@@ -4,11 +4,10 @@ export const PROFILE = {
   lastName: "Karthikeyan",
   role: "AI Systems Engineer",
   tagline:
-    "Building retrieval systems, ML infrastructure, and intelligent backend architectures.",
+    "Engineering intelligent systems that scale — from vector retrieval pipelines to production ML infrastructure.",
   summary:
-    "Focused on scalable AI systems, vector retrieval, distributed backend engineering, and production ML.",
+    "Focused on backend architecture, distributed systems, and real-world AI deployment.",
   email: "madhankrthik@gmail.com",
-  phone: "+91 93619 51624",
   github: "https://github.com/madhan-karthikeyan",
   linkedin: "https://linkedin.com/in/madhan-karthikeyan",
   resume: "/resume.pdf",
@@ -23,6 +22,8 @@ export type Project = {
   stack: string[];
   metrics: { value: string; label: string }[];
   pipeline: string[];
+  github?: string;
+  demo?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -32,7 +33,7 @@ export const PROJECTS: Project[] = [
     category: "Full-Stack Distributed System",
     subtitle: "Hospital Management Platform",
     description:
-      "Multi-role hospital platform with JWT-secured RBAC across ~40 REST APIs, async task pipelines, and event-driven cache invalidation sustaining sub-150ms p95 latency.",
+      "Built a multi-role hospital platform serving multiple stakeholder dashboards simultaneously — JWT-secured RBAC across ~40 REST APIs with async task pipelines and event-driven cache invalidation, sustaining sub-150ms p95 latency under load.",
     stack: ["Flask", "Vue.js", "Celery", "Redis", "PostgreSQL", "JWT", "Razorpay"],
     metrics: [
       { value: "<150", label: "ms p95 latency" },
@@ -40,6 +41,7 @@ export const PROJECTS: Project[] = [
       { value: "3-tier", label: "RBAC hierarchy" },
     ],
     pipeline: ["Client", "JWT Gateway", "Flask API", "Redis Cache", "Celery Workers", "Postgres"],
+    github: "https://github.com/madhan-karthikeyan/medicore",
   },
   {
     id: "satellite",
@@ -47,7 +49,7 @@ export const PROJECTS: Project[] = [
     category: "Embedding-Based Geospatial Retrieval",
     subtitle: "Semantic search across multispectral imagery",
     description:
-      "Semantic retrieval over 10,000+ geo-tagged satellite images using RemoteCLIP embeddings and ChromaDB, with DBSCAN-Haversine clustering and 3D Cesium visualization.",
+      "Built semantic retrieval over 10,000+ geo-tagged satellite images that lets analysts search by visual concept, not just metadata. Uses RemoteCLIP embeddings with ChromaDB, DBSCAN-Haversine clustering for spatial grouping, and 3D Cesium visualization — sub-500ms query latency end to end.",
     stack: ["RemoteCLIP", "ChromaDB", "DBSCAN", "FastAPI", "Cesium"],
     metrics: [
       { value: "<500", label: "ms query latency" },
@@ -55,6 +57,7 @@ export const PROJECTS: Project[] = [
       { value: "4-band", label: "GeoTIFF pipeline" },
     ],
     pipeline: ["GeoTIFF", "RemoteCLIP", "ChromaDB", "DBSCAN", "FastAPI", "Cesium"],
+    github: "https://github.com/madhan-karthikeyan/satellite-image-retrieval",
   },
   {
     id: "rag",
@@ -62,7 +65,7 @@ export const PROJECTS: Project[] = [
     category: "Retrieval-Augmented Generation",
     subtitle: "Source-cited financial Q&A",
     description:
-      "Production RAG pipeline using LlamaIndex and ChromaDB for context-grounded financial Q&A — explainable, source-cited responses across a 1,000+ document knowledge base.",
+      "Built a production RAG pipeline that answers financial queries with every claim traced back to its source document. Uses LlamaIndex and ChromaDB for retrieval over a 1,000+ document knowledge base, with a reranker ensuring citation quality — sub-2s end-to-end latency.",
     stack: ["LlamaIndex", "ChromaDB", "FastAPI", "ReactJS"],
     metrics: [
       { value: "<2s", label: "end-to-end latency" },
@@ -70,6 +73,7 @@ export const PROJECTS: Project[] = [
       { value: "Source", label: "cited responses" },
     ],
     pipeline: ["Query", "LlamaIndex", "ChromaDB", "Reranker", "LLM", "Cited Response"],
+    github: "https://github.com/madhan-karthikeyan/rag-financial-ai",
   },
   {
     id: "driftbench",
@@ -77,7 +81,7 @@ export const PROJECTS: Project[] = [
     category: "ML Systems + Software Engineering",
     subtitle: "Time-Series Benchmarking Framework",
     description:
-      "Configuration-driven benchmarking framework supporting 5+ forecasters and 8+ concept-drift detectors with rolling-window simulation, retraining strategies, and a real-time React dashboard.",
+      "Built a configuration-driven benchmarking framework that cut evaluation setup from hours to minutes — supports 5+ forecasters and 8+ concept-drift detectors with rolling-window simulation, configurable retraining, and a real-time React dashboard for experiment comparison.",
     stack: ["Python", "Flask", "React", "LightGBM", "Config Pipelines"],
     metrics: [
       { value: "5+", label: "forecasting algorithms" },
@@ -85,6 +89,7 @@ export const PROJECTS: Project[] = [
       { value: "6", label: "benchmark datasets" },
     ],
     pipeline: ["Config", "Loader", "Forecaster", "Drift Detector", "Retrainer", "Dashboard"],
+    github: "https://github.com/madhan-karthikeyan/driftbench-ts",
   },
   {
     id: "cluster",
@@ -92,7 +97,7 @@ export const PROJECTS: Project[] = [
     category: "ML Retrieval System",
     subtitle: "GMM-routed FAISS with semantic cache",
     description:
-      "Partitioned embedding space with Gaussian Mixture Models to scope FAISS search within cluster regions, with a cluster-indexed semantic cache for similar-query reuse.",
+      "Designed a retrieval system that scopes FAISS search within semantically clustered regions using Gaussian Mixture Models, reducing search space without sacrificing recall. A cluster-indexed semantic cache reuses results for similar queries — achieving ~30% latency reduction with a ~35% cache hit rate.",
     stack: ["GMM", "FAISS", "FastAPI", "Python"],
     metrics: [
       { value: "~30%", label: "latency reduction" },
@@ -100,6 +105,7 @@ export const PROJECTS: Project[] = [
       { value: "Cluster", label: "scoped search" },
     ],
     pipeline: ["Embedding", "GMM Routing", "Semantic Cache", "FAISS Fallback", "Result"],
+    github: "https://github.com/madhan-karthikeyan/cluster-aware-semantic-cache",
   },
 ];
 

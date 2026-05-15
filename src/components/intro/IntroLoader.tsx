@@ -22,14 +22,14 @@ export function IntroLoader({ onDone }: { onDone: () => void }) {
         if (s >= LINES.length) return s;
         return s + 1;
       });
-    }, 420);
+    }, 300);
     return () => clearInterval(interval);
   }, [onDone]);
 
   useEffect(() => {
     if (shown >= LINES.length) {
-      const t = setTimeout(() => setExiting(true), 500);
-      const t2 = setTimeout(() => onDone(), 1200);
+      const t = setTimeout(() => setExiting(true), 300);
+      const t2 = setTimeout(() => onDone(), 800);
       return () => {
         clearTimeout(t);
         clearTimeout(t2);
