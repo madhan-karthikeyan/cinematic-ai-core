@@ -218,15 +218,104 @@ export function VisualFrame({
   children: React.ReactNode;
   aspect?: string;
 }) {
+  const [scale, setScale] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const dragRef = useRef<{ x: number; y: number; px: number; py: number } | null>(null);
+
+  const clampScale = (s: number) => Math.min(3, Math.max(1, s));
+
+  const zoom = useCallback((delta: number) => {
+    setScale((s) => {
+      const next = clampScale(s + delta);
+      if (next === 1) setPan({ x: 0, y: 0 });
+      return next;
+    });
+  }, []);
+
+  const reset = () => {
+    setScale(1);
+    setPan({ x: 0, y: 0 });
+  };
+
+  const onWheel = (e: React.WheelEvent) => {
+    if (!e.ctrlKey && !e.metaKey) return;
+    e.preventDefault();
+    zoom(e.deltaY > 0 ? -0.2 : 0.2);
+  };
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (scale === 1) return;
+    (e.target as Element).setPointerCapture?.(e.pointerId);
+    dragRef.current = { x: e.clientX, y: e.clientY, px: pan.x, py: pan.y };
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!dragRef.current) return;
+    setPan({
+      x: dragRef.current.px + (e.clientX - dragRef.current.x),
+      y: dragRef.current.py + (e.clientY - dragRef.current.y),
+    });
+  };
+  const onPointerUp = () => {
+    dragRef.current = null;
+  };
+
   return (
     <div className="relative rounded-2xl border border-white/[0.06] bg-black/30 backdrop-blur-xl overflow-hidden">
       <PanelGlow />
       <AmbientGrid />
       <div
-        className="relative w-full"
-        style={{ aspectRatio: aspect.replace("/", " / ") }}
+        className="relative w-full overflow-hidden"
+        style={{ aspectRatio: aspect.replace("/", " / "), cursor: scale > 1 ? (dragRef.current ? "grabbing" : "grab") : "default" }}
+        onWheel={onWheel}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
       >
-        {children}
+        <div
+          className="absolute inset-0"
+          style={{
+            transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})`,
+            transformOrigin: "center center",
+            transition: dragRef.current ? "none" : "transform 400ms cubic-bezier(0.22,1,0.36,1)",
+          }}
+        >
+          {children}
+        </div>
+      </div>
+
+      {/* Zoom controls */}
+      <div className="absolute right-3 bottom-3 z-10 flex items-center gap-1 rounded-full border border-white/10 bg-black/60 backdrop-blur-md p-1">
+        <button
+          type="button"
+          aria-label="Zoom out"
+          onClick={() => zoom(-0.25)}
+          disabled={scale <= 1}
+          className="h-7 w-7 grid place-items-center rounded-full text-text-secondary hover:text-text-primary hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        >
+          <Minus className="h-3.5 w-3.5" />
+        </button>
+        <span className="font-mono text-[10px] tracking-[0.18em] text-text-tertiary px-1.5 tabular-nums w-10 text-center">
+          {Math.round(scale * 100)}%
+        </span>
+        <button
+          type="button"
+          aria-label="Zoom in"
+          onClick={() => zoom(0.25)}
+          disabled={scale >= 3}
+          className="h-7 w-7 grid place-items-center rounded-full text-text-secondary hover:text-text-primary hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        >
+          <Plus className="h-3.5 w-3.5" />
+        </button>
+        <button
+          type="button"
+          aria-label="Reset zoom"
+          onClick={reset}
+          disabled={scale === 1 && pan.x === 0 && pan.y === 0}
+          className="h-7 w-7 grid place-items-center rounded-full text-text-secondary hover:text-text-primary hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        >
+          <RotateCcw className="h-3.5 w-3.5" />
+        </button>
       </div>
     </div>
   );
