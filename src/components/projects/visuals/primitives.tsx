@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
+import { Plus, Minus, RotateCcw } from "lucide-react";
 
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
