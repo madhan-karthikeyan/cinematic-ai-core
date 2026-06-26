@@ -5,6 +5,7 @@ import { GlassNavbar } from "@/components/layout/GlassNavbar";
 import { IntroLoader } from "@/components/intro/IntroLoader";
 import { Hero } from "@/components/hero/Hero";
 import { FeaturedProjects } from "@/components/projects/FeaturedProjects";
+import { SecondaryProjects } from "@/components/projects/SecondaryProjects";
 import { ExperienceTimeline } from "@/components/timeline/ExperienceTimeline";
 import { ArchitectureShowcase } from "@/components/systems/ArchitectureShowcase";
 import { SkillsGraph } from "@/components/skills/SkillsGraph";
@@ -21,6 +22,7 @@ export default function App() {
       <main className="relative">
         <Hero />
         <FeaturedProjects />
+        <SecondaryProjects />
         <ArchitectureShowcase />
         <SkillsGraph />
         <ExperienceTimeline />

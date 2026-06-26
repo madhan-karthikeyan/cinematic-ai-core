@@ -42,7 +42,7 @@ export function GlassNavbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-      className="fixed top-5 left-1/2 z-50 -translate-x-1/2 w-[min(1040px,calc(100%-2rem))]"
+      className="fixed top-5 left-4 right-4 z-50 translate-x-0 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-full md:max-w-[1040px]"
     >
       <nav
         className={`flex items-center justify-between gap-4 rounded-full pl-4 pr-2 py-1 ease-cinematic transition-all duration-700 ${
@@ -82,7 +82,7 @@ export function GlassNavbar() {
           ))}
         </ul>
         <a
-          href="/resume.pdf"
+          href="/resume_new.pdf"
           target="_blank"
           rel="noreferrer"
           className="rounded-full px-3.5 py-1.5 text-[10px] font-mono uppercase tracking-[0.22em] text-text-secondary hover:text-text-primary border border-white/[0.06] hover:border-white/15 transition-all ease-cinematic"

@@ -10,7 +10,7 @@ export const PROFILE = {
   email: "madhankrthik@gmail.com",
   github: "https://github.com/madhan-karthikeyan",
   linkedin: "https://linkedin.com/in/madhan-karthikeyan",
-  resume: "/resume.pdf",
+  resume: "/resume_new.pdf",
 };
 
 export type Project = {
@@ -26,22 +26,54 @@ export type Project = {
   demo?: string;
 };
 
-export const PROJECTS: Project[] = [
+export const FEATURED_PROJECTS: Project[] = [
   {
-    id: "medicore",
-    name: "MediCore",
-    category: "Full-Stack Distributed System",
-    subtitle: "Hospital Management Platform",
+    id: "decisiondrift",
+    name: "DecisionDrift",
+    category: "Deterministic Governance System",
+    subtitle: "ADR Governance CLI via AST",
     description:
-      "Built a multi-role hospital platform serving multiple stakeholder dashboards simultaneously — JWT-secured RBAC across ~40 REST APIs with async task pipelines and event-driven cache invalidation, sustaining sub-150ms p95 latency under load.",
-    stack: ["Flask", "Vue.js", "Celery", "Redis", "PostgreSQL", "JWT", "Razorpay"],
+      "Architected a deterministic rule engine compiling ADR prohibitions into rule classes, enforced via AST-based static analysis on diffs and full-repo scans. Validated against a 21-patch labeled benchmark achieving 95.2% Recall@5 and published as a PyPI package and GitHub Action.",
+    stack: ["Python", "Click", "Tree-sitter", "GitHub Actions", "AST"],
     metrics: [
-      { value: "<150", label: "ms p95 latency" },
-      { value: "~40", label: "REST endpoints" },
-      { value: "3-tier", label: "RBAC hierarchy" },
+      { value: "95.2%", label: "Recall@5" },
+      { value: "5", label: "rule classes enforced" },
+      { value: "CI/CD", label: "GitHub Marketplace" },
     ],
-    pipeline: ["Client", "JWT Gateway", "Flask API", "Redis Cache", "Celery Workers", "Postgres"],
-    github: "https://github.com/madhan-karthikeyan/medicore",
+    pipeline: ["Diff", "Tree-sitter AST", "Rule Engine", "Violation Report", "GitHub PR Check"],
+    github: "https://github.com/madhan-karthikeyan/DecisionDrift",
+  },
+  {
+    id: "apex",
+    name: "Apex Sprint Planner",
+    category: "Explainable Planning Platform",
+    subtitle: "ILP-based constrained optimization",
+    description:
+      "Built a full-stack sprint planning platform featuring a 5-stage processing pipeline. Executes context extraction, weight learning, and ILP-based constrained optimization via PuLP/CBC to automatically generate optimal sprint schedules with per-story explainability.",
+    stack: ["FastAPI", "React", "SQLAlchemy", "PuLP", "Docker"],
+    metrics: [
+      { value: "5-stage", label: "processing pipeline" },
+      { value: "ILP", label: "optimization (PuLP)" },
+      { value: "Docker", label: "containerized stack" },
+    ],
+    pipeline: ["Context", "Weight Learning", "ILP Solver", "Explainability", "Dashboard"],
+    github: "https://github.com/madhan-karthikeyan/ApexS_SWE",
+  },
+  {
+    id: "joblens",
+    name: "JobLens",
+    category: "Job Search Automation Platform",
+    subtitle: "Personal Placement Operating System",
+    description:
+      "Built a multi-source aggregation pipeline ingesting listings from 7+ ATS platforms into an async PostgreSQL store. Designed a deterministic ranking engine scoring opportunities on role alignment, skill match, behavior affinity, and freshness decay, returning score breakdowns per listing.",
+    stack: ["FastAPI", "PostgreSQL", "SQLAlchemy (async)", "React", "Cron", "Docker"],
+    metrics: [
+      { value: "7 ATS", label: "integration platforms" },
+      { value: "90+", label: "skills parsed" },
+      { value: "4-factor", label: "ranking algorithm" },
+    ],
+    pipeline: ["Ingestion", "Normalization", "Ranking Engine", "Postgres", "Discord Digest"],
+    github: "https://github.com/madhan-karthikeyan/joblens",
   },
   {
     id: "satellite",
@@ -49,15 +81,46 @@ export const PROJECTS: Project[] = [
     category: "Embedding-Based Geospatial Retrieval",
     subtitle: "Semantic search across multispectral imagery",
     description:
-      "Built semantic retrieval over 10,000+ geo-tagged satellite images that lets analysts search by visual concept, not just metadata. Uses RemoteCLIP embeddings with ChromaDB, DBSCAN-Haversine clustering for spatial grouping, and 3D Cesium visualization — sub-500ms query latency end to end.",
+      "Built semantic retrieval over 20,000+ fMoW satellite images. Utilized RemoteCLIP embeddings with 8x Test-Time Augmentation (TTA), ChromaDB with Reciprocal Rank Fusion (RRF), and DBSCAN-Haversine clustering for spatial grouping — visualized in 3D Cesium.",
     stack: ["RemoteCLIP", "ChromaDB", "DBSCAN", "FastAPI", "Cesium"],
     metrics: [
-      { value: "<500", label: "ms query latency" },
-      { value: "10k+", label: "indexed images" },
-      { value: "4-band", label: "GeoTIFF pipeline" },
+      { value: "20k+", label: "fMoW images" },
+      { value: "8x TTA", label: "Test-Time Augmentation" },
+      { value: "RRF", label: "Reciprocal Rank Fusion" },
     ],
     pipeline: ["GeoTIFF", "RemoteCLIP", "ChromaDB", "DBSCAN", "FastAPI", "Cesium"],
     github: "https://github.com/madhan-karthikeyan/satellite-image-retrieval",
+  },
+  {
+    id: "cinema",
+    name: "Cinema Audience Forecast",
+    category: "Production ML Forecasting",
+    subtitle: "Ensemble Time-Series Prediction",
+    description:
+      "Engineered a production-grade 3-model ensemble (LightGBM, XGBoost, CatBoost) with a 0.2 lag-blend predicting cinema attendance. Features a Parquet-partitioned HistoryStore, 15 Prometheus metrics for observability, and graceful degradation paths.",
+    stack: ["LightGBM", "XGBoost", "CatBoost", "Prometheus", "Parquet"],
+    metrics: [
+      { value: "RMSE 21.6", label: "R² 0.54" },
+      { value: "15", label: "Prometheus metrics" },
+      { value: "3-model", label: "ensemble blend" },
+    ],
+    pipeline: ["HistoryStore", "Feature Eng", "3-Model Ensemble", "Lag Blend", "Forecast"],
+    github: "https://github.com/madhan-karthikeyan/Cinema-Audience-Forecast",
+  },
+];
+
+export const SECONDARY_PROJECTS: Project[] = [
+  {
+    id: "medicore",
+    name: "MediCore",
+    category: "Full-Stack Distributed System",
+    subtitle: "Hospital Management Platform V2",
+    description:
+      "Multi-role hospital platform serving dashboards simultaneously. Features JWT-secured RBAC across ~40 REST APIs with async task pipelines and event-driven cache invalidation.",
+    stack: ["Flask", "Vue.js", "Celery", "Redis", "PostgreSQL"],
+    metrics: [],
+    pipeline: [],
+    github: "https://github.com/madhan-karthikeyan/hospital-management-system-V2",
   },
   {
     id: "rag",
@@ -65,70 +128,69 @@ export const PROJECTS: Project[] = [
     category: "Retrieval-Augmented Generation",
     subtitle: "Source-cited financial Q&A",
     description:
-      "Built a production RAG pipeline that answers financial queries with every claim traced back to its source document. Uses LlamaIndex and ChromaDB for retrieval over a 1,000+ document knowledge base, with a reranker ensuring citation quality — sub-2s end-to-end latency.",
+      "Production RAG pipeline answering financial queries with explicit source citations. Uses LlamaIndex and ChromaDB over a 1,000+ document knowledge base.",
     stack: ["LlamaIndex", "ChromaDB", "FastAPI", "ReactJS"],
-    metrics: [
-      { value: "<2s", label: "end-to-end latency" },
-      { value: "1k+", label: "indexed documents" },
-      { value: "Source", label: "cited responses" },
-    ],
-    pipeline: ["Query", "LlamaIndex", "ChromaDB", "Reranker", "LLM", "Cited Response"],
-    github: "https://github.com/madhan-karthikeyan/rag-financial-ai",
+    metrics: [],
+    pipeline: [],
+    github: "https://github.com/madhan-karthikeyan/responsible-fin-ai",
+  },
+  {
+    id: "cluster",
+    name: "Cluster-Aware Retrieval",
+    category: "ML Retrieval System",
+    subtitle: "GMM-routed FAISS with semantic cache",
+    description:
+      "Designed a retrieval system scoping FAISS search within semantically clustered regions using Gaussian Mixture Models, reducing search space alongside a semantic cache.",
+    stack: ["GMM", "FAISS", "FastAPI", "Python"],
+    metrics: [],
+    pipeline: [],
+    github: "https://github.com/madhan-karthikeyan/cluster-aware-semantic-cache",
   },
   {
     id: "driftbench",
     name: "DriftBench-TS",
-    category: "ML Systems + Software Engineering",
+    category: "ML Systems + Tooling",
     subtitle: "Time-Series Benchmarking Framework",
     description:
-      "Built a configuration-driven benchmarking framework that cut evaluation setup from hours to minutes — supports 5+ forecasters and 8+ concept-drift detectors with rolling-window simulation, configurable retraining, and a real-time React dashboard for experiment comparison.",
-    stack: ["Python", "Flask", "React", "LightGBM", "Config Pipelines"],
-    metrics: [
-      { value: "5+", label: "forecasting algorithms" },
-      { value: "8+", label: "drift detectors" },
-      { value: "6", label: "benchmark datasets" },
-    ],
-    pipeline: ["Config", "Loader", "Forecaster", "Drift Detector", "Retrainer", "Dashboard"],
+      "Configuration-driven benchmarking framework supporting 5+ forecasters and 8+ concept-drift detectors with a real-time React dashboard.",
+    stack: ["Python", "Flask", "React", "LightGBM"],
+    metrics: [],
+    pipeline: [],
     github: "https://github.com/madhan-karthikeyan/driftbench-ts",
-  },
-  {
-    id: "cluster",
-    name: "Cluster-Aware Semantic Retrieval",
-    category: "ML Retrieval System",
-    subtitle: "GMM-routed FAISS with semantic cache",
-    description:
-      "Designed a retrieval system that scopes FAISS search within semantically clustered regions using Gaussian Mixture Models, reducing search space without sacrificing recall. A cluster-indexed semantic cache reuses results for similar queries — achieving ~30% latency reduction with a ~35% cache hit rate.",
-    stack: ["GMM", "FAISS", "FastAPI", "Python"],
-    metrics: [
-      { value: "~30%", label: "latency reduction" },
-      { value: "~35%", label: "cache hit rate" },
-      { value: "Cluster", label: "scoped search" },
-    ],
-    pipeline: ["Embedding", "GMM Routing", "Semantic Cache", "FAISS Fallback", "Result"],
-    github: "https://github.com/madhan-karthikeyan/cluster-aware-semantic-cache",
   },
 ];
 
 export const EXPERTISE = [
   {
-    title: "Retrieval Systems",
-    items: ["FAISS", "ChromaDB", "LlamaIndex", "RemoteCLIP / CLIP", "Vector Search", "Embedding Pipelines", "Semantic Caching"],
+    title: "Backend & Systems",
+    items: ["Python", "FastAPI", "Flask", "Async I/O (SQLAlchemy, asyncpg)", "Celery", "Redis", "REST API Design"],
+  },
+  {
+    title: "Retrieval & CV",
+    items: ["FAISS", "ChromaDB", "RemoteCLIP / CLIP", "Vector Search", "Embedding Pipelines", "Object Detection (YOLOv8)"],
+  },
+  {
+    title: "DevOps & CLI Tools",
+    items: ["Docker Compose", "GitHub Actions (CI/CD)", "AWS", "AST & Static Analysis (Tree-sitter)", "Click", "PyPI Packaging"],
   },
   {
     title: "ML Infrastructure",
-    items: ["PyTorch", "Scikit-learn", "LightGBM", "YOLOv8", "Time-Series Forecasting", "GMM", "DBSCAN", "RAG Pipelines"],
-  },
-  {
-    title: "Backend Systems",
-    items: ["Python", "FastAPI", "Flask", "REST API Design", "JWT", "Celery", "Redis", "Distributed Task Queues"],
-  },
-  {
-    title: "Systems & DevOps",
-    items: ["Docker", "AWS (EC2, S3)", "Event-Driven Architecture", "Async Pipelines", "PostgreSQL", "MongoDB", "Git"],
+    items: ["PyTorch", "LightGBM", "XGBoost", "Time-Series Forecasting", "GMM", "DBSCAN", "RAG Pipelines", "LlamaIndex"],
   },
 ];
 
 export const EXPERIENCE = [
+  {
+    role: "Computer Vision Intern",
+    org: "GloballyGI",
+    location: "Vellore, Tamil Nadu",
+    period: "Jan 2026 – Jun 2026",
+    bullets: [
+      "Engineered a multi-object food detection pipeline (YOLOv8n + D-FINE), achieving 80–85% mAP across 50 food classes on a custom-curated 5,000-image dataset.",
+      "Designed class-balancing and targeted augmentation pipelines for 50 categories, reducing per-class mAP variance by ~35%.",
+      "Reduced inference latency by ~25% through lightweight architecture selection and post-training optimization, enabling real-time detection.",
+    ],
+  },
   {
     role: "AI Engineer Intern",
     org: "National Informatics Centre · Govt. of India",
@@ -137,17 +199,6 @@ export const EXPERIENCE = [
     bullets: [
       "Architected a triage-to-resolution pipeline integrating a vision-language model with a vector similarity index over 150+ documents (4GB), cutting resolution time from >24h to under 1 minute.",
       "Engineered the document ingestion service with chunking, embedding generation, and metadata-filtered cosine retrieval, enabling sub-second search over 4GB without dedicated search infrastructure.",
-    ],
-  },
-  {
-    role: "Computer Vision Intern",
-    org: "GloballyGI",
-    location: "Remote",
-    period: "Jan 2025 – Apr 2025",
-    bullets: [
-      "Engineered a multi-object food detection pipeline (YOLOv8n + D-FINE), achieving 80–85% mAP across 50 food classes on a custom-curated 5,000-image dataset.",
-      "Designed class-balancing and targeted augmentation pipelines for 50 categories, reducing per-class mAP variance by ~35%.",
-      "Reduced inference latency by ~25% through lightweight architecture selection and post-training optimization.",
     ],
   },
 ];

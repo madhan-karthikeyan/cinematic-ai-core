@@ -15,6 +15,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 -z-10"
         animate={{ opacity: [0.78, 0.92, 0.78] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        style={{ willChange: "opacity, transform", transform: "translateZ(0)" }}
       >
         <div
           className="absolute -top-56 -left-44 h-[58vh] w-[58vh] rounded-full blur-[140px] opacity-22"
@@ -60,12 +61,12 @@ export function Hero() {
         />
       </motion.div>
 
-      <div className="mx-auto max-w-7xl grid lg:grid-cols-[0.95fr_1.05fr] gap-14 lg:gap-8 items-start">
+      <div className="mx-auto max-w-7xl grid lg:grid-cols-[0.95fr_1.05fr] gap-8 md:gap-10 lg:gap-8 items-start">
         <motion.div
           variants={stagger(0.1, 0.12)}
           initial="hidden"
           animate="show"
-          className="order-2 lg:order-1"
+          className="order-1"
         >
           <motion.div
             variants={fadeUp}
@@ -128,7 +129,7 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        <div className="order-1 lg:order-2 lg:-translate-y-[5.25rem] lg:translate-x-12">
+        <div className="order-2 lg:-translate-y-[5.25rem] lg:translate-x-12 mt-12 lg:mt-0">
           <Portrait />
         </div>
       </div>

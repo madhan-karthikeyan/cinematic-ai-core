@@ -1,18 +1,18 @@
 import { motion } from "framer-motion";
-import { PROJECTS, type Project } from "@/data/portfolio";
+import { FEATURED_PROJECTS, type Project } from "@/data/portfolio";
 import { Reveal, SectionLabel } from "@/components/ui/SectionLabel";
-import { MediCoreTopology } from "./visuals/MediCoreTopology";
-import { SatelliteRetrievalMap } from "./visuals/SatelliteRetrievalMap";
-import { RagOrchestrationGraph } from "./visuals/RagOrchestrationGraph";
-import { DriftBenchTemporal } from "./visuals/DriftBenchTemporal";
-import { ClusterRetrievalTopology } from "./visuals/ClusterRetrievalTopology";
+import { DecisionDriftVisual } from "./visuals/DecisionDriftVisual";
+import { ApexVisual } from "./visuals/ApexVisual";
+import { JobLensVisual } from "./visuals/JobLensVisual";
+import { SatelliteVisual } from "./visuals/SatelliteVisual";
+import { CinemaVisual } from "./visuals/CinemaVisual";
 
 const VISUALS: Record<string, React.ComponentType> = {
-  medicore: MediCoreTopology,
-  satellite: SatelliteRetrievalMap,
-  rag: RagOrchestrationGraph,
-  driftbench: DriftBenchTemporal,
-  cluster: ClusterRetrievalTopology,
+  decisiondrift: DecisionDriftVisual,
+  apex: ApexVisual,
+  joblens: JobLensVisual,
+  satellite: SatelliteVisual,
+  cinema: CinemaVisual,
 };
 
 function ProjectCase({ project, index }: { project: Project; index: number }) {
@@ -22,7 +22,7 @@ function ProjectCase({ project, index }: { project: Project; index: number }) {
     <Reveal>
       <article className="group relative">
         <div
-          className={`grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-14 items-center ${
+          className={`grid lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-14 items-center flex-col-reverse flex lg:grid ${
             reverse ? "lg:[&>*:first-child]:order-2" : ""
           }`}
         >
@@ -109,7 +109,7 @@ export function FeaturedProjects() {
         </Reveal>
 
         <div className="space-y-24 md:space-y-32">
-          {PROJECTS.map((p, i) => (
+          {FEATURED_PROJECTS.map((p, i) => (
             <ProjectCase key={p.id} project={p} index={i} />
           ))}
         </div>

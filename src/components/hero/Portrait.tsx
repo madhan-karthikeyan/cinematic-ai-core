@@ -3,7 +3,7 @@ import portrait from "@/assets/portrait.png";
 
 export function Portrait() {
   return (
-    <div className="relative w-full max-w-[620px] mx-auto aspect-[3/4]">
+    <div className="relative w-full max-w-[280px] md:max-w-[400px] lg:max-w-[620px] mx-auto aspect-[3/4]">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div
           className="absolute -top-[2%] -left-[2%] w-[52%] h-[38%] blur-[85px] opacity-[0.36]"
@@ -43,8 +43,9 @@ export function Portrait() {
           alt="Madhan Karthikeyan portrait"
           className="absolute inset-0 h-full w-full object-contain object-center select-none pointer-events-none"
           style={{
-            filter:
-              "brightness(1.06) drop-shadow(-18px -3px 28px rgba(110,197,255,0.28))",
+            filter: "brightness(1.06) drop-shadow(-18px -3px 28px rgba(110,197,255,0.28))",
+            willChange: "transform",
+            transform: "translateZ(0)"
           }}
           animate={{ y: [0, -6, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
