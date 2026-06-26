@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import portrait from "@/assets/portrait.png";
+import portrait from "@/assets/portrait.webp";
 
 export function Portrait() {
   return (

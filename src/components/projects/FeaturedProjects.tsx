@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
+import { Suspense, lazy } from "react";
 import { FEATURED_PROJECTS, type Project } from "@/data/portfolio";
 import { Reveal, SectionLabel } from "@/components/ui/SectionLabel";
-import { DecisionDriftVisual } from "./visuals/DecisionDriftVisual";
-import { ApexVisual } from "./visuals/ApexVisual";
-import { JobLensVisual } from "./visuals/JobLensVisual";
-import { SatelliteVisual } from "./visuals/SatelliteVisual";
-import { CinemaVisual } from "./visuals/CinemaVisual";
+
+const DecisionDriftVisual = lazy(() => import("./visuals/DecisionDriftVisual").then(m => ({ default: m.DecisionDriftVisual })));
+const ApexVisual = lazy(() => import("./visuals/ApexVisual").then(m => ({ default: m.ApexVisual })));
+const JobLensVisual = lazy(() => import("./visuals/JobLensVisual").then(m => ({ default: m.JobLensVisual })));
+const SatelliteVisual = lazy(() => import("./visuals/SatelliteVisual").then(m => ({ default: m.SatelliteVisual })));
+const CinemaVisual = lazy(() => import("./visuals/CinemaVisual").then(m => ({ default: m.CinemaVisual })));
 
 const VISUALS: Record<string, React.ComponentType> = {
   decisiondrift: DecisionDriftVisual,
@@ -88,7 +90,13 @@ function ProjectCase({ project, index }: { project: Project; index: number }) {
           </div>
 
           {/* visual */}
-          <div className="relative">{Visual ? <Visual /> : null}</div>
+          <div className="relative">
+            {Visual ? (
+              <Suspense fallback={<div className="h-full w-full aspect-[1000/620] bg-black/20 rounded-2xl border border-white/[0.04] animate-pulse" />}>
+                <Visual />
+              </Suspense>
+            ) : null}
+          </div>
         </div>
         <div className="mt-20 h-px bg-gradient-to-r from-transparent via-white/8 to-transparent" />
       </article>
