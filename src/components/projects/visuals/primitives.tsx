@@ -223,12 +223,41 @@ export function VisualFrame({
   const dragRef = useRef<{ x: number; y: number; px: number; py: number } | null>(null);
   const [lastTap, setLastTap] = useState(0);
   const [showHint, setShowHint] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // Hide hint after a few seconds
   useEffect(() => {
     const t = setTimeout(() => setShowHint(false), 5000);
     return () => clearTimeout(t);
   }, []);
+
+  // Center the scroll position on mount and when resetting scale
+  useEffect(() => {
+    if (!scrollRef.current || scale !== 1) return;
+
+    const centerScroll = () => {
+      const el = scrollRef.current;
+      if (el && el.scrollWidth > el.clientWidth) {
+        el.style.scrollBehavior = "auto";
+        el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
+        el.style.scrollBehavior = "smooth";
+      }
+    };
+
+    // Attempt immediately
+    centerScroll();
+
+    // Fallbacks for when Framer Motion layout finishes rendering
+    const raf = requestAnimationFrame(centerScroll);
+    const t1 = setTimeout(centerScroll, 150);
+    const t2 = setTimeout(centerScroll, 600);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [scale]);
   
   const clampScale = (s: number) => Math.min(3, Math.max(1, s));
 
@@ -283,13 +312,9 @@ export function VisualFrame({
       <PanelGlow />
       <AmbientGrid />
       <div
-        className="relative w-full overflow-hidden aspect-square md:!aspect-[var(--desktop-aspect)]"
+        className="relative w-full aspect-square md:!aspect-[var(--desktop-aspect)]"
         style={Object.assign(
-          { "--desktop-aspect": aspect.replace("/", " / ") } as React.CSSProperties,
-          { 
-            cursor: scale > 1 ? (dragRef.current ? "grabbing" : "grab") : "default",
-            touchAction: scale > 1 ? "none" : "pan-y"
-          }
+          { "--desktop-aspect": aspect.replace("/", " / ") } as React.CSSProperties
         )}
         onWheel={onWheel}
         onPointerDown={onPointerDown}
@@ -298,14 +323,21 @@ export function VisualFrame({
         onPointerCancel={onPointerUp}
       >
         <div
-          className="absolute inset-0 flex items-center justify-center [&>svg]:h-full [&>svg]:w-[161%] [&>svg]:max-w-none md:[&>svg]:w-full"
-          style={{
-            transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})`,
-            transformOrigin: "center center",
-            transition: dragRef.current ? "none" : "transform 400ms cubic-bezier(0.22,1,0.36,1)",
-          }}
+          ref={scrollRef}
+          className={`absolute inset-0 ${scale === 1 ? "overflow-x-auto overflow-y-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" : "overflow-hidden"}`}
+          style={{ touchAction: scale > 1 ? "none" : "pan-x pan-y" }}
         >
-          {children}
+          <div
+            className="relative h-full w-[161%] md:w-full flex-shrink-0"
+            style={{
+              transform: scale > 1 ? `translate(${pan.x}px, ${pan.y}px) scale(${scale})` : "none",
+              transformOrigin: "center center",
+              transition: dragRef.current ? "none" : "transform 400ms cubic-bezier(0.22,1,0.36,1)",
+              cursor: scale > 1 ? (dragRef.current ? "grabbing" : "grab") : "default",
+            }}
+          >
+            {children}
+          </div>
         </div>
       </div>
 
