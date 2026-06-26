@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Reveal, SectionLabel } from "@/components/ui/SectionLabel";
+import { VisualFrame } from "@/components/projects/visuals/primitives";
 
 type Cluster = {
   id: string;
@@ -146,21 +147,8 @@ export function SkillsGraph() {
           </p>
         </Reveal>
 
-        <div className="relative rounded-3xl border border-white/[0.05] bg-black/30 backdrop-blur-xl overflow-hidden">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 -z-10 opacity-50"
-            style={{
-              background:
-                "radial-gradient(35% 50% at 18% 22%, color-mix(in oklab, var(--accent-cyan) 14%, transparent), transparent 70%)," +
-                "radial-gradient(35% 50% at 82% 22%, color-mix(in oklab, var(--accent-indigo) 14%, transparent), transparent 70%)," +
-                "radial-gradient(35% 50% at 18% 78%, color-mix(in oklab, var(--accent-violet) 14%, transparent), transparent 70%)," +
-                "radial-gradient(35% 50% at 82% 78%, color-mix(in oklab, var(--accent-warm) 12%, transparent), transparent 70%)",
-            }}
-          />
-          <div aria-hidden className="pointer-events-none absolute inset-0 grid-texture opacity-[0.15]" />
-
-          <div className="relative w-full" style={{ aspectRatio: `${VB.w} / ${VB.h}` }}>
+        <div className="relative group">
+          <VisualFrame aspect="1100/720">
             <svg
               viewBox={`0 0 ${VB.w} ${VB.h}`}
               className="absolute inset-0 h-full w-full"
@@ -241,9 +229,9 @@ export function SkillsGraph() {
                 );
               })}
             </svg>
-          </div>
+          </VisualFrame>
 
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 px-5 pb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-text-tertiary">
+          <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 px-2 pb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-text-tertiary">
             {CLUSTERS.map((c) => (
               <span key={c.id} className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full" style={{ background: c.color }} />
