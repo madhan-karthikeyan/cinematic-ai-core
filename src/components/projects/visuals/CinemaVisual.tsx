@@ -11,7 +11,7 @@ export function CinemaVisual() {
 
   return (
     <VisualFrame aspect="1000/620">
-      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
+      <svg preserveAspectRatio="xMidYMid slice" viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
         {/* Glow */}
         <circle cx={700} cy={310} r={200} fill="color-mix(in srgb, #10b981 8%, transparent)" style={{ filter: "blur(60px)" }} />
 

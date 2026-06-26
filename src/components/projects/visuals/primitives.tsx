@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { Plus, Minus, RotateCcw } from "lucide-react";
 
 export const EASE = [0.22, 1, 0.36, 1] as const;
@@ -221,7 +221,15 @@ export function VisualFrame({
   const [scale, setScale] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const dragRef = useRef<{ x: number; y: number; px: number; py: number } | null>(null);
+  const [lastTap, setLastTap] = useState(0);
+  const [showHint, setShowHint] = useState(true);
 
+  // Hide hint after a few seconds
+  useEffect(() => {
+    const t = setTimeout(() => setShowHint(false), 5000);
+    return () => clearTimeout(t);
+  }, []);
+  
   const clampScale = (s: number) => Math.min(3, Math.max(1, s));
 
   const zoom = useCallback((delta: number) => {
@@ -244,10 +252,21 @@ export function VisualFrame({
   };
 
   const onPointerDown = (e: React.PointerEvent) => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      if (scale === 1) zoom(1); // Zoom to 2.0x
+      else reset();
+      setLastTap(0);
+      setShowHint(false);
+      return;
+    }
+    setLastTap(now);
+
     if (scale === 1) return;
     (e.target as Element).setPointerCapture?.(e.pointerId);
     dragRef.current = { x: e.clientX, y: e.clientY, px: pan.x, py: pan.y };
   };
+  
   const onPointerMove = (e: React.PointerEvent) => {
     if (!dragRef.current) return;
     setPan({
@@ -260,12 +279,18 @@ export function VisualFrame({
   };
 
   return (
-    <div className="relative rounded-2xl border border-white/[0.06] bg-black/30 backdrop-blur-xl overflow-hidden">
+    <div className="relative rounded-2xl border border-white/[0.06] bg-black/30 backdrop-blur-xl overflow-hidden group">
       <PanelGlow />
       <AmbientGrid />
       <div
-        className="relative w-full overflow-hidden"
-        style={{ aspectRatio: aspect.replace("/", " / "), cursor: scale > 1 ? (dragRef.current ? "grabbing" : "grab") : "default" }}
+        className="relative w-full overflow-hidden aspect-square md:!aspect-[var(--desktop-aspect)]"
+        style={Object.assign(
+          { "--desktop-aspect": aspect.replace("/", " / ") } as React.CSSProperties,
+          { 
+            cursor: scale > 1 ? (dragRef.current ? "grabbing" : "grab") : "default",
+            touchAction: scale > 1 ? "none" : "pan-y"
+          }
+        )}
         onWheel={onWheel}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -283,6 +308,15 @@ export function VisualFrame({
           {children}
         </div>
       </div>
+
+      {/* Mobile Hint */}
+      {showHint && scale === 1 && (
+        <div className="absolute inset-x-0 bottom-6 flex justify-center pointer-events-none md:hidden opacity-0 animate-[fadeIn_0.5s_1s_forwards]">
+          <div className="bg-black/60 backdrop-blur-xl border border-white/10 text-white/80 text-[9px] px-3 py-1.5 rounded-full uppercase tracking-wider">
+            Double tap to explore
+          </div>
+        </div>
+      )}
 
       {/* Zoom controls */}
       <div className="absolute right-3 bottom-3 z-10 flex items-center gap-1 rounded-full border border-white/10 bg-black/60 backdrop-blur-md p-1">

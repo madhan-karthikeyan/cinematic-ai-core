@@ -39,7 +39,7 @@ export function ClusterRetrievalTopology() {
 
   return (
     <VisualFrame aspect="1000/620">
-      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
+      <svg preserveAspectRatio="xMidYMid slice" viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
 
         {/* semantic cache region overlay */}
         <g style={{ opacity: 0.9 }}>

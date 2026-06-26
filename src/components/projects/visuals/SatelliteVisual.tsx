@@ -15,7 +15,7 @@ export function SatelliteVisual() {
 
   return (
     <VisualFrame aspect="1000/620">
-      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
+      <svg preserveAspectRatio="xMidYMid slice" viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
         {/* Orbital glow */}
         <ellipse cx={500} cy={150} rx={400} ry={100} fill="color-mix(in oklab, var(--accent-indigo) 5%, transparent)" style={{ filter: "blur(40px)" }} />
 
