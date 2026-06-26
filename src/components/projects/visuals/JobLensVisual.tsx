@@ -31,7 +31,7 @@ export function JobLensVisual() {
 
   return (
     <VisualFrame aspect="1000/620">
-      <svg preserveAspectRatio="xMidYMid slice" viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
+      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
         <circle cx={500} cy={310} r={280} fill="color-mix(in oklab, var(--accent-warm) 4%, transparent)" style={{ filter: "blur(60px)" }} />
 
         {/* Orbit Rings */}

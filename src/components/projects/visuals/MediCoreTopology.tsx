@@ -34,7 +34,7 @@ export function MediCoreTopology() {
 
   return (
     <VisualFrame aspect="1000/620">
-      <svg preserveAspectRatio="xMidYMid slice" viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
+      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
         {/* outer service mesh ring */}
         <circle cx={CX} cy={CY} r={205} fill="none" stroke="color-mix(in oklab, white 4%, transparent)" strokeDasharray="2 6" />
         <circle cx={CX} cy={CY} r={108} fill="none" stroke="color-mix(in oklab, var(--accent-indigo) 14%, transparent)" strokeDasharray="1 5" />

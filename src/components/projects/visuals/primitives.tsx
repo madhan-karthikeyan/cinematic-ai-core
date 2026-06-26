@@ -298,7 +298,7 @@ export function VisualFrame({
         onPointerCancel={onPointerUp}
       >
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 flex items-center justify-center [&>svg]:h-full [&>svg]:w-[161%] [&>svg]:max-w-none md:[&>svg]:w-full"
           style={{
             transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})`,
             transformOrigin: "center center",

@@ -27,7 +27,7 @@ const RETRAIN = [260, 480, 700];
 export function DriftBenchTemporal() {
   return (
     <VisualFrame aspect="1000/620">
-      <svg preserveAspectRatio="xMidYMid slice" viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full">
+      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full">
         {/* time grid */}
         {Array.from({ length: 11 }).map((_, i) => (
           <line key={i} x1={i * 100} x2={i * 100} y1={80} y2={520} stroke="color-mix(in oklab, white 4%, transparent)" />

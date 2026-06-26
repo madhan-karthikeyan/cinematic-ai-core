@@ -8,7 +8,7 @@ export function DecisionDriftVisual() {
 
   return (
     <VisualFrame aspect="1000/620">
-      <svg preserveAspectRatio="xMidYMid slice" viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
+      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
         {/* Background Radial Glow */}
         <circle cx={500} cy={310} r={250} fill="color-mix(in oklab, var(--accent-violet) 8%, transparent)" style={{ filter: "blur(60px)" }} />
 

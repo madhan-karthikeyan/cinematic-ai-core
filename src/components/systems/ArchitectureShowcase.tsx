@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useMemo, useRef, useState } from "react";
 import { Reveal, SectionLabel } from "@/components/ui/SectionLabel";
+import { VisualFrame } from "@/components/projects/visuals/primitives";
 
 /* ---------- topology data ---------- */
 
@@ -149,29 +150,8 @@ export function ArchitectureShowcase() {
           </p>
         </Reveal>
 
-        <div
-          ref={ref}
-          className="relative rounded-3xl border border-white/[0.06] bg-black/30 backdrop-blur-xl p-3 md:p-5 overflow-hidden"
-        >
-          {/* ambient lighting inside the panel */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 -z-10 opacity-60"
-            style={{
-              background:
-                "radial-gradient(35% 50% at 22% 28%, color-mix(in oklab, var(--accent-cyan) 18%, transparent), transparent 70%)," +
-                "radial-gradient(35% 50% at 78% 28%, color-mix(in oklab, var(--accent-indigo) 16%, transparent), transparent 70%)," +
-                "radial-gradient(35% 50% at 22% 78%, color-mix(in oklab, var(--accent-violet) 16%, transparent), transparent 70%)," +
-                "radial-gradient(35% 50% at 78% 78%, color-mix(in oklab, var(--accent-warm) 14%, transparent), transparent 70%)",
-            }}
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 grid-texture opacity-[0.18]"
-          />
-
-          {/* topology */}
-          <div className="relative aspect-[1000/640] w-full">
+        <div ref={ref} className="relative group">
+          <VisualFrame aspect="1000/640">
             <svg
               viewBox={`0 0 ${VB.w} ${VB.h}`}
               className="absolute inset-0 h-full w-full"
@@ -318,9 +298,10 @@ export function ArchitectureShowcase() {
                 );
               })}
             </svg>
+          </VisualFrame>
 
-            {/* description panel */}
-            <div className="pointer-events-none absolute left-3 md:left-5 bottom-3 md:bottom-5 right-3 md:right-5 flex justify-between gap-4">
+          {/* description panel */}
+          <div className="pointer-events-none absolute left-3 md:left-5 bottom-3 md:bottom-5 right-3 md:right-5 flex justify-between gap-4 z-20">
               <motion.div
                 key={active ?? "idle"}
                 initial={{ opacity: 0, y: 8, filter: "blur(6px)" }}
@@ -350,7 +331,6 @@ export function ArchitectureShowcase() {
                 </div>
               </div>
             </div>
-          </div>
 
           {/* cluster legend */}
           <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 px-2 pb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-text-tertiary">

@@ -32,7 +32,7 @@ export function SatelliteRetrievalMap() {
 
   return (
     <VisualFrame aspect="1000/620">
-      <svg preserveAspectRatio="xMidYMid slice" viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
+      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
         {/* cesium latitude curves */}
         {[120, 200, 320, 440, 540].map((y, i) => (
           <path
