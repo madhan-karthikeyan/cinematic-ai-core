@@ -45,9 +45,7 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={0.2}>
-          <div className="mt-12 font-mono text-xs text-text-tertiary">
-            {PROFILE.email}
-          </div>
+          <div className="mt-12 font-mono text-xs text-text-tertiary">{PROFILE.email}</div>
         </Reveal>
       </div>
     </section>

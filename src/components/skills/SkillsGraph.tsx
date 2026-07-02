@@ -93,11 +93,37 @@ export function SkillsGraph() {
   const [active, setActive] = useState<string | null>(null);
 
   const allNodes = useMemo(() => {
-    const out: Record<string, { id: string; x: number; y: number; cluster: string; color: string; label: string; hub?: boolean }> = {
-      core: { id: "core", x: CORE.x, y: CORE.y, cluster: "core", color: "white", label: "AI Systems" },
+    const out: Record<
+      string,
+      {
+        id: string;
+        x: number;
+        y: number;
+        cluster: string;
+        color: string;
+        label: string;
+        hub?: boolean;
+      }
+    > = {
+      core: {
+        id: "core",
+        x: CORE.x,
+        y: CORE.y,
+        cluster: "core",
+        color: "white",
+        label: "AI Systems",
+      },
     };
     for (const c of CLUSTERS) {
-      out[`hub-${c.id}`] = { id: `hub-${c.id}`, x: c.hub.x, y: c.hub.y, cluster: c.id, color: c.color, label: c.label, hub: true };
+      out[`hub-${c.id}`] = {
+        id: `hub-${c.id}`,
+        x: c.hub.x,
+        y: c.hub.y,
+        cluster: c.id,
+        color: c.color,
+        label: c.label,
+        hub: true,
+      };
       for (const t of c.techs) {
         out[t.id] = {
           id: t.id,
@@ -142,8 +168,8 @@ export function SkillsGraph() {
             An interconnected stack — every node is a discipline practiced in production.
           </h2>
           <p className="mt-5 text-text-secondary max-w-2xl leading-relaxed">
-            Hover any technology to follow how it connects through clusters of retrieval,
-            ML infrastructure, distributed systems, and orchestration.
+            Hover any technology to follow how it connects through clusters of retrieval, ML
+            infrastructure, distributed systems, and orchestration.
           </p>
         </Reveal>
 
@@ -162,21 +188,42 @@ export function SkillsGraph() {
                 const dim = !!active && !eActive;
                 const d = `M ${a.x} ${a.y} L ${b.x} ${b.y}`;
                 return (
-                  <g key={i} style={{ opacity: dim ? 0.15 : 1, transition: "opacity 500ms cubic-bezier(0.22,1,0.36,1)" }}>
+                  <g
+                    key={i}
+                    style={{
+                      opacity: dim ? 0.15 : 1,
+                      transition: "opacity 500ms cubic-bezier(0.22,1,0.36,1)",
+                    }}
+                  >
                     <motion.path
                       d={d}
                       fill="none"
-                      stroke={eActive ? "color-mix(in oklab, white 70%, transparent)" : "color-mix(in oklab, white 10%, transparent)"}
+                      stroke={
+                        eActive
+                          ? "color-mix(in oklab, white 70%, transparent)"
+                          : "color-mix(in oklab, white 10%, transparent)"
+                      }
                       strokeWidth={eActive ? 1.2 : 0.6}
                       initial={{ pathLength: 0, opacity: 0 }}
                       whileInView={{ pathLength: 1, opacity: 1 }}
                       viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 1, delay: 0.2 + (i % 8) * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{
+                        duration: 1,
+                        delay: 0.2 + (i % 8) * 0.04,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
                       style={{ transition: "stroke 500ms cubic-bezier(0.22,1,0.36,1)" }}
                     />
                     {(eActive || (!active && i % 4 === 0)) && (
-                      <circle r={eActive ? 2.4 : 1.4} fill={eActive ? "white" : "color-mix(in oklab, white 55%, transparent)"}>
-                        <animateMotion dur={eActive ? "1.6s" : "6s"} repeatCount="indefinite" path={d} />
+                      <circle
+                        r={eActive ? 2.4 : 1.4}
+                        fill={eActive ? "white" : "color-mix(in oklab, white 55%, transparent)"}
+                      >
+                        <animateMotion
+                          dur={eActive ? "1.6s" : "6s"}
+                          repeatCount="indefinite"
+                          path={d}
+                        />
                       </circle>
                     )}
                   </g>
@@ -197,7 +244,11 @@ export function SkillsGraph() {
                     initial={{ opacity: 0, scale: 0.7 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.7, delay: 0.15 + (i % 14) * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{
+                      duration: 0.7,
+                      delay: 0.15 + (i % 14) * 0.04,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                     onMouseEnter={() => setActive(n.id)}
                     style={{
                       opacity: dim ? 0.25 : 1,
@@ -209,10 +260,32 @@ export function SkillsGraph() {
                     onFocus={() => setActive(n.id)}
                   >
                     {(isCore || isHub || isActive) && (
-                      <circle cx={n.x} cy={n.y} r={r * (isCore ? 3 : isActive ? 2.6 : 2)} fill={n.color} opacity={isCore ? 0.4 : isActive ? 0.32 : 0.14} style={{ filter: "blur(10px)" }} />
+                      <circle
+                        cx={n.x}
+                        cy={n.y}
+                        r={r * (isCore ? 3 : isActive ? 2.6 : 2)}
+                        fill={n.color}
+                        opacity={isCore ? 0.4 : isActive ? 0.32 : 0.14}
+                        style={{ filter: "blur(10px)" }}
+                      />
                     )}
-                    <circle cx={n.x} cy={n.y} r={r + (isActive ? 4 : 2)} fill="none" stroke={isActive ? n.color : "color-mix(in oklab, white 14%, transparent)"} strokeWidth={isActive ? 1.2 : 0.6} style={{ transition: "all 500ms cubic-bezier(0.22,1,0.36,1)" }} />
-                    <circle cx={n.x} cy={n.y} r={r} fill={isCore ? "white" : "color-mix(in oklab, black 50%, transparent)"} stroke={n.color} strokeWidth={isCore ? 0 : isHub ? 1.4 : 1} />
+                    <circle
+                      cx={n.x}
+                      cy={n.y}
+                      r={r + (isActive ? 4 : 2)}
+                      fill="none"
+                      stroke={isActive ? n.color : "color-mix(in oklab, white 14%, transparent)"}
+                      strokeWidth={isActive ? 1.2 : 0.6}
+                      style={{ transition: "all 500ms cubic-bezier(0.22,1,0.36,1)" }}
+                    />
+                    <circle
+                      cx={n.x}
+                      cy={n.y}
+                      r={r}
+                      fill={isCore ? "white" : "color-mix(in oklab, black 50%, transparent)"}
+                      stroke={n.color}
+                      strokeWidth={isCore ? 0 : isHub ? 1.4 : 1}
+                    />
                     {isCore && <circle cx={n.x} cy={n.y} r={r - 7} fill="black" opacity={0.85} />}
                     <text
                       x={n.x}
@@ -221,7 +294,11 @@ export function SkillsGraph() {
                       fill={isCore || isActive ? "var(--text-primary)" : "var(--text-secondary)"}
                       fontFamily="var(--font-mono)"
                       fontSize={isCore ? 11 : isHub ? 10 : 9}
-                      style={{ letterSpacing: "0.18em", textTransform: "uppercase", transition: "fill 500ms cubic-bezier(0.22,1,0.36,1)" }}
+                      style={{
+                        letterSpacing: "0.18em",
+                        textTransform: "uppercase",
+                        transition: "fill 500ms cubic-bezier(0.22,1,0.36,1)",
+                      }}
                     >
                       {n.label}
                     </text>

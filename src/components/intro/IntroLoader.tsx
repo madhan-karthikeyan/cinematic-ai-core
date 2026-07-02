@@ -13,7 +13,10 @@ export function IntroLoader({ onDone }: { onDone: () => void }) {
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       onDone();
       return;
     }

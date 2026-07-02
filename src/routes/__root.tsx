@@ -77,11 +77,31 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#050505" },
       { property: "og:title", content: "Madhan Karthikeyan — AI Systems Engineer" },
       { name: "twitter:title", content: "Madhan Karthikeyan — AI Systems Engineer" },
-      { name: "description", content: "A cinematic portfolio showcasing AI Systems Engineering, ML Infrastructure, and Retrieval Systems expertise." },
-      { property: "og:description", content: "A cinematic portfolio showcasing AI Systems Engineering, ML Infrastructure, and Retrieval Systems expertise." },
-      { name: "twitter:description", content: "A cinematic portfolio showcasing AI Systems Engineering, ML Infrastructure, and Retrieval Systems expertise." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/38dc8a5b-e830-4810-adce-45010636be54/id-preview-30df8931--e025eb50-3eff-4081-af3c-501c63af8222.lovable.app-1778853463627.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/38dc8a5b-e830-4810-adce-45010636be54/id-preview-30df8931--e025eb50-3eff-4081-af3c-501c63af8222.lovable.app-1778853463627.png" },
+      {
+        name: "description",
+        content:
+          "A cinematic portfolio showcasing AI Systems Engineering, ML Infrastructure, and Retrieval Systems expertise.",
+      },
+      {
+        property: "og:description",
+        content:
+          "A cinematic portfolio showcasing AI Systems Engineering, ML Infrastructure, and Retrieval Systems expertise.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "A cinematic portfolio showcasing AI Systems Engineering, ML Infrastructure, and Retrieval Systems expertise.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/38dc8a5b-e830-4810-adce-45010636be54/id-preview-30df8931--e025eb50-3eff-4081-af3c-501c63af8222.lovable.app-1778853463627.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/38dc8a5b-e830-4810-adce-45010636be54/id-preview-30df8931--e025eb50-3eff-4081-af3c-501c63af8222.lovable.app-1778853463627.png",
+      },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:type", content: "website" },
     ],

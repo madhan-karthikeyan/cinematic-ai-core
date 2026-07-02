@@ -33,11 +33,46 @@ const CLUSTERS = [
     color: "var(--accent-cyan)",
     hub: { x: 200, y: 150, r: 18 },
     nodes: [
-      { id: "faiss", label: "FAISS", x: 70, y: 70, r: 10, desc: "GMM-routed FAISS for cluster-scoped vector search." },
-      { id: "chroma", label: "ChromaDB", x: 320, y: 60, r: 11, desc: "Persistent vector store powering RAG and geospatial retrieval." },
-      { id: "semantic", label: "Semantic Search", x: 50, y: 240, r: 10, desc: "Embedding-based search over multispectral and textual corpora." },
-      { id: "embed", label: "Embedding Pipelines", x: 360, y: 220, r: 11, desc: "Chunking, encoding, metadata-filtered cosine retrieval." },
-      { id: "rag", label: "RAG Systems", x: 170, y: 290, r: 11, desc: "LlamaIndex + ChromaDB for source-cited responses." },
+      {
+        id: "faiss",
+        label: "FAISS",
+        x: 70,
+        y: 70,
+        r: 10,
+        desc: "GMM-routed FAISS for cluster-scoped vector search.",
+      },
+      {
+        id: "chroma",
+        label: "ChromaDB",
+        x: 320,
+        y: 60,
+        r: 11,
+        desc: "Persistent vector store powering RAG and geospatial retrieval.",
+      },
+      {
+        id: "semantic",
+        label: "Semantic Search",
+        x: 50,
+        y: 240,
+        r: 10,
+        desc: "Embedding-based search over multispectral and textual corpora.",
+      },
+      {
+        id: "embed",
+        label: "Embedding Pipelines",
+        x: 360,
+        y: 220,
+        r: 11,
+        desc: "Chunking, encoding, metadata-filtered cosine retrieval.",
+      },
+      {
+        id: "rag",
+        label: "RAG Systems",
+        x: 170,
+        y: 290,
+        r: 11,
+        desc: "LlamaIndex + ChromaDB for source-cited responses.",
+      },
     ],
   },
   {
@@ -46,11 +81,46 @@ const CLUSTERS = [
     color: "var(--accent-indigo)",
     hub: { x: 800, y: 150, r: 18 },
     nodes: [
-      { id: "fastapi", label: "FastAPI", x: 930, y: 80, r: 11, desc: "Typed Python services exposing retrieval and clustering APIs." },
-      { id: "redis", label: "Redis", x: 680, y: 60, r: 10, desc: "Event-driven cache invalidation, queue broker, semantic cache layer." },
-      { id: "celery", label: "Celery", x: 940, y: 230, r: 10, desc: "Async task pipelines for reports, exports, and reminders." },
-      { id: "jwt", label: "JWT · RBAC", x: 660, y: 230, r: 10, desc: "Multi-role auth across a 3-tier user hierarchy." },
-      { id: "rest", label: "REST APIs", x: 820, y: 300, r: 11, desc: "Idempotent endpoints, ~40-route surface across MediCore." },
+      {
+        id: "fastapi",
+        label: "FastAPI",
+        x: 930,
+        y: 80,
+        r: 11,
+        desc: "Typed Python services exposing retrieval and clustering APIs.",
+      },
+      {
+        id: "redis",
+        label: "Redis",
+        x: 680,
+        y: 60,
+        r: 10,
+        desc: "Event-driven cache invalidation, queue broker, semantic cache layer.",
+      },
+      {
+        id: "celery",
+        label: "Celery",
+        x: 940,
+        y: 230,
+        r: 10,
+        desc: "Async task pipelines for reports, exports, and reminders.",
+      },
+      {
+        id: "jwt",
+        label: "JWT · RBAC",
+        x: 660,
+        y: 230,
+        r: 10,
+        desc: "Multi-role auth across a 3-tier user hierarchy.",
+      },
+      {
+        id: "rest",
+        label: "REST APIs",
+        x: 820,
+        y: 300,
+        r: 11,
+        desc: "Idempotent endpoints, ~40-route surface across MediCore.",
+      },
     ],
   },
   {
@@ -59,11 +129,46 @@ const CLUSTERS = [
     color: "var(--accent-violet)",
     hub: { x: 200, y: 490, r: 18 },
     nodes: [
-      { id: "pytorch", label: "PyTorch", x: 50, y: 410, r: 11, desc: "Foundation for embedding and detection model work." },
-      { id: "lightgbm", label: "LightGBM", x: 340, y: 410, r: 10, desc: "Tabular forecasting in DriftBench-TS." },
-      { id: "yolo", label: "YOLOv8", x: 70, y: 580, r: 10, desc: "Multi-object detection, ~25% latency reduction post-optimization." },
-      { id: "ts", label: "Time-Series", x: 360, y: 560, r: 10, desc: "Rolling-window simulation across 6 benchmark datasets." },
-      { id: "gmm", label: "GMM · DBSCAN", x: 180, y: 600, r: 10, desc: "Clustering for retrieval routing and geographic grouping." },
+      {
+        id: "pytorch",
+        label: "PyTorch",
+        x: 50,
+        y: 410,
+        r: 11,
+        desc: "Foundation for embedding and detection model work.",
+      },
+      {
+        id: "lightgbm",
+        label: "LightGBM",
+        x: 340,
+        y: 410,
+        r: 10,
+        desc: "Tabular forecasting in DriftBench-TS.",
+      },
+      {
+        id: "yolo",
+        label: "YOLOv8",
+        x: 70,
+        y: 580,
+        r: 10,
+        desc: "Multi-object detection, ~25% latency reduction post-optimization.",
+      },
+      {
+        id: "ts",
+        label: "Time-Series",
+        x: 360,
+        y: 560,
+        r: 10,
+        desc: "Rolling-window simulation across 6 benchmark datasets.",
+      },
+      {
+        id: "gmm",
+        label: "GMM · DBSCAN",
+        x: 180,
+        y: 600,
+        r: 10,
+        desc: "Clustering for retrieval routing and geographic grouping.",
+      },
     ],
   },
   {
@@ -72,11 +177,46 @@ const CLUSTERS = [
     color: "var(--accent-warm)",
     hub: { x: 800, y: 490, r: 18 },
     nodes: [
-      { id: "docker", label: "Docker", x: 940, y: 410, r: 11, desc: "Reproducible runtimes for every service." },
-      { id: "aws", label: "AWS", x: 680, y: 410, r: 10, desc: "EC2 + S3 for deployment and asset pipelines." },
-      { id: "cache", label: "Semantic Cache", x: 940, y: 560, r: 11, desc: "Cluster-indexed reuse — ~35% hit rate under repeated queries." },
-      { id: "async", label: "Async Pipelines", x: 670, y: 580, r: 10, desc: "Decoupling long-running jobs from the HTTP request cycle." },
-      { id: "latency", label: "Latency Budgets", x: 830, y: 600, r: 10, desc: "<150ms p95 API · <500ms retrieval · <2s end-to-end RAG." },
+      {
+        id: "docker",
+        label: "Docker",
+        x: 940,
+        y: 410,
+        r: 11,
+        desc: "Reproducible runtimes for every service.",
+      },
+      {
+        id: "aws",
+        label: "AWS",
+        x: 680,
+        y: 410,
+        r: 10,
+        desc: "EC2 + S3 for deployment and asset pipelines.",
+      },
+      {
+        id: "cache",
+        label: "Semantic Cache",
+        x: 940,
+        y: 560,
+        r: 11,
+        desc: "Cluster-indexed reuse — ~35% hit rate under repeated queries.",
+      },
+      {
+        id: "async",
+        label: "Async Pipelines",
+        x: 670,
+        y: 580,
+        r: 10,
+        desc: "Decoupling long-running jobs from the HTTP request cycle.",
+      },
+      {
+        id: "latency",
+        label: "Latency Budgets",
+        x: 830,
+        y: 600,
+        r: 10,
+        desc: "<150ms p95 API · <500ms retrieval · <2s end-to-end RAG.",
+      },
     ],
   },
 ];
@@ -102,7 +242,15 @@ const EDGES: Edge[] = (() => {
 const ALL_NODES: Record<string, Node & { color?: string }> = (() => {
   const map: Record<string, Node & { color?: string }> = { core: CORE };
   for (const c of CLUSTERS) {
-    map[`hub-${c.id}`] = { id: `hub-${c.id}`, label: c.label, x: c.hub.x, y: c.hub.y, r: c.hub.r, cluster: c.id, color: c.color };
+    map[`hub-${c.id}`] = {
+      id: `hub-${c.id}`,
+      label: c.label,
+      x: c.hub.x,
+      y: c.hub.y,
+      r: c.hub.r,
+      cluster: c.id,
+      color: c.color,
+    };
     for (const n of c.nodes) {
       map[n.id] = { ...n, cluster: c.id, color: c.color };
     }
@@ -111,7 +259,6 @@ const ALL_NODES: Record<string, Node & { color?: string }> = (() => {
 })();
 
 /* ---------- component ---------- */
-
 
 export function ArchitectureShowcase() {
   const ref = useRef<HTMLDivElement>(null);
@@ -129,10 +276,8 @@ export function ArchitectureShowcase() {
     return adj;
   }, []);
 
-  const isEdgeActive = (e: Edge) =>
-    !!active && (e.from === active || e.to === active);
-  const isNodeNeighbor = (id: string) =>
-    !!active && (id === active || adjacency[active]?.has(id));
+  const isEdgeActive = (e: Edge) => !!active && (e.from === active || e.to === active);
+  const isNodeNeighbor = (id: string) => !!active && (id === active || adjacency[active]?.has(id));
 
   const activeNode = active ? ALL_NODES[active] : null;
 
@@ -142,7 +287,8 @@ export function ArchitectureShowcase() {
         <Reveal className="mb-14 max-w-3xl">
           <SectionLabel index="02">Systems Architecture</SectionLabel>
           <h2 className="mt-5 font-display text-4xl md:text-5xl tracking-tight text-text-primary text-balance">
-            Designing scalable systems where retrieval, reasoning, caching, and orchestration converge.
+            Designing scalable systems where retrieval, reasoning, caching, and orchestration
+            converge.
           </h2>
           <p className="mt-5 text-text-secondary max-w-2xl leading-relaxed">
             Production AI systems are networks of interacting components — not isolated models.
@@ -182,7 +328,13 @@ export function ArchitectureShowcase() {
                 const d = `M ${a.x} ${a.y} L ${b.x} ${b.y}`;
 
                 return (
-                  <g key={i} style={{ opacity: dimmed ? 0.18 : 1, transition: "opacity 600ms cubic-bezier(0.22,1,0.36,1)" }}>
+                  <g
+                    key={i}
+                    style={{
+                      opacity: dimmed ? 0.18 : 1,
+                      transition: "opacity 600ms cubic-bezier(0.22,1,0.36,1)",
+                    }}
+                  >
                     <motion.path
                       id={pathId}
                       d={d}
@@ -202,7 +354,10 @@ export function ArchitectureShowcase() {
                     />
                     {/* signal pulse */}
                     {(activeE || (!active && i % 5 === 0)) && (
-                      <circle r={activeE ? 2.6 : 1.6} fill={activeE ? "white" : "color-mix(in oklab, white 60%, transparent)"}>
+                      <circle
+                        r={activeE ? 2.6 : 1.6}
+                        fill={activeE ? "white" : "color-mix(in oklab, white 60%, transparent)"}
+                      >
                         <animateMotion
                           dur={activeE ? "1.6s" : "5.5s"}
                           repeatCount="indefinite"
@@ -275,9 +430,7 @@ export function ArchitectureShowcase() {
                       strokeWidth={isCore ? 0 : isHub ? 1.4 : 1}
                       style={{ transition: "all 500ms cubic-bezier(0.22,1,0.36,1)" }}
                     />
-                    {isCore && (
-                      <circle cx={n.x} cy={n.y} r={n.r - 6} fill="black" opacity={0.85} />
-                    )}
+                    {isCore && <circle cx={n.x} cy={n.y} r={n.r - 6} fill="black" opacity={0.85} />}
                     {/* label */}
                     <text
                       x={n.x}
@@ -302,35 +455,35 @@ export function ArchitectureShowcase() {
 
           {/* description panel */}
           <div className="pointer-events-none absolute left-3 md:left-5 bottom-3 md:bottom-5 right-3 md:right-5 flex justify-between gap-4 z-20">
-              <motion.div
-                key={active ?? "idle"}
-                initial={{ opacity: 0, y: 8, filter: "blur(6px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-md rounded-xl border border-white/[0.07] bg-black/40 backdrop-blur-md p-4"
-              >
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary">
-                  {activeNode
-                    ? activeCluster && CLUSTERS.find((c) => c.id === activeCluster)?.label || "Core"
-                    : "Topology"}
-                </div>
-                <div className="mt-1 font-display text-lg text-text-primary">
-                  {activeNode ? activeNode.label : "AI Systems"}
-                </div>
-                <div className="mt-1.5 text-xs text-text-secondary leading-relaxed">
-                  {activeNode?.desc ??
-                    "Hover or focus a node to reveal how retrieval, backend, ML, and production layers connect."}
-                </div>
-              </motion.div>
+            <motion.div
+              key={active ?? "idle"}
+              initial={{ opacity: 0, y: 8, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-md rounded-xl border border-white/[0.07] bg-black/40 backdrop-blur-md p-4"
+            >
+              <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary">
+                {activeNode
+                  ? (activeCluster && CLUSTERS.find((c) => c.id === activeCluster)?.label) || "Core"
+                  : "Topology"}
+              </div>
+              <div className="mt-1 font-display text-lg text-text-primary">
+                {activeNode ? activeNode.label : "AI Systems"}
+              </div>
+              <div className="mt-1.5 text-xs text-text-secondary leading-relaxed">
+                {activeNode?.desc ??
+                  "Hover or focus a node to reveal how retrieval, backend, ML, and production layers connect."}
+              </div>
+            </motion.div>
 
-              <div className="hidden md:flex items-end">
-                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary text-right">
-                  {Object.keys(ALL_NODES).length} nodes
-                  <br />
-                  {EDGES.length} edges
-                </div>
+            <div className="hidden md:flex items-end">
+              <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-text-tertiary text-right">
+                {Object.keys(ALL_NODES).length} nodes
+                <br />
+                {EDGES.length} edges
               </div>
             </div>
+          </div>
 
           {/* cluster legend */}
           <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 px-2 pb-2 font-mono text-[10px] uppercase tracking-[0.24em] text-text-tertiary">
@@ -345,9 +498,7 @@ export function ArchitectureShowcase() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
 }
-

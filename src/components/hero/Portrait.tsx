@@ -35,7 +35,8 @@ export function Portrait() {
         className="relative h-full w-full"
         style={{
           maskImage: "radial-gradient(ellipse 80% 55% at 48% 28%, black 32%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 55% at 48% 28%, black 32%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 55% at 48% 28%, black 32%, transparent 100%)",
         }}
       >
         <motion.img
@@ -45,7 +46,7 @@ export function Portrait() {
           style={{
             filter: "brightness(1.06) drop-shadow(-18px -3px 28px rgba(110,197,255,0.28))",
             willChange: "transform",
-            transform: "translateZ(0)"
+            transform: "translateZ(0)",
           }}
           animate={{ y: [0, -6, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}

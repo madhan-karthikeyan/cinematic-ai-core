@@ -34,16 +34,55 @@ export function MediCoreTopology() {
 
   return (
     <VisualFrame aspect="1000/620">
-      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
+      <svg
+        viewBox={`0 0 ${VB.w} ${VB.h}`}
+        className="absolute inset-0 h-full w-full"
+        onMouseLeave={() => setActive(null)}
+      >
         {/* outer service mesh ring */}
-        <circle cx={CX} cy={CY} r={205} fill="none" stroke="color-mix(in oklab, white 4%, transparent)" strokeDasharray="2 6" />
-        <circle cx={CX} cy={CY} r={108} fill="none" stroke="color-mix(in oklab, var(--accent-indigo) 14%, transparent)" strokeDasharray="1 5" />
+        <circle
+          cx={CX}
+          cy={CY}
+          r={205}
+          fill="none"
+          stroke="color-mix(in oklab, white 4%, transparent)"
+          strokeDasharray="2 6"
+        />
+        <circle
+          cx={CX}
+          cy={CY}
+          r={108}
+          fill="none"
+          stroke="color-mix(in oklab, var(--accent-indigo) 14%, transparent)"
+          strokeDasharray="1 5"
+        />
 
         {/* postgres persistence base */}
         <g>
-          <ellipse cx={CX} cy={560} rx={260} ry={22} fill="none" stroke="color-mix(in oklab, var(--accent-warm) 22%, transparent)" />
-          <ellipse cx={CX} cy={560} rx={260} ry={22} fill="color-mix(in oklab, var(--accent-warm) 6%, transparent)" />
-          <text x={CX} y={596} textAnchor="middle" fill="var(--text-tertiary)" fontFamily="var(--font-mono)" fontSize={9} style={{ letterSpacing: "0.28em", textTransform: "uppercase" }}>
+          <ellipse
+            cx={CX}
+            cy={560}
+            rx={260}
+            ry={22}
+            fill="none"
+            stroke="color-mix(in oklab, var(--accent-warm) 22%, transparent)"
+          />
+          <ellipse
+            cx={CX}
+            cy={560}
+            rx={260}
+            ry={22}
+            fill="color-mix(in oklab, var(--accent-warm) 6%, transparent)"
+          />
+          <text
+            x={CX}
+            y={596}
+            textAnchor="middle"
+            fill="var(--text-tertiary)"
+            fontFamily="var(--font-mono)"
+            fontSize={9}
+            style={{ letterSpacing: "0.28em", textTransform: "uppercase" }}
+          >
             PostgreSQL · Persistence Layer
           </text>
         </g>
@@ -61,9 +100,19 @@ export function MediCoreTopology() {
         ))}
 
         {/* gateway → postgres */}
-        <Edge d={`M ${CX} ${CY + 18} Q ${CX} 460 ${CX} 560`} color="color-mix(in oklab, var(--accent-warm) 30%, transparent)" pulseDur={5} />
+        <Edge
+          d={`M ${CX} ${CY + 18} Q ${CX} 460 ${CX} 560`}
+          color="color-mix(in oklab, var(--accent-warm) 30%, transparent)"
+          pulseDur={5}
+        />
         {services.map((s) => (
-          <path key={`p-${s.id}`} d={`M ${s.x} ${s.y} Q ${(s.x + CX) / 2} ${s.y + (560 - s.y) * 0.4} ${CX + (s.x - CX) * 0.35} 560`} fill="none" stroke="color-mix(in oklab, var(--accent-warm) 10%, transparent)" strokeDasharray="1 4" />
+          <path
+            key={`p-${s.id}`}
+            d={`M ${s.x} ${s.y} Q ${(s.x + CX) / 2} ${s.y + (560 - s.y) * 0.4} ${CX + (s.x - CX) * 0.35} 560`}
+            fill="none"
+            stroke="color-mix(in oklab, var(--accent-warm) 10%, transparent)"
+            strokeDasharray="1 4"
+          />
         ))}
 
         {/* worker cluster ring */}
@@ -126,7 +175,13 @@ export function MediCoreTopology() {
 
         {/* central gateway */}
         <g>
-          <circle cx={CX} cy={CY} r={48} fill="color-mix(in oklab, var(--accent-indigo) 18%, transparent)" style={{ filter: "blur(10px)" }} />
+          <circle
+            cx={CX}
+            cy={CY}
+            r={48}
+            fill="color-mix(in oklab, var(--accent-indigo) 18%, transparent)"
+            style={{ filter: "blur(10px)" }}
+          />
           <NodeDot
             cx={CX}
             cy={CY}

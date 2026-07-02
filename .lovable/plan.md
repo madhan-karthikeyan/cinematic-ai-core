@@ -1,4 +1,5 @@
 ## Goal
+
 Replace the hero portrait with the newly uploaded B&W photo, relit to studio-grade quality that matches the portfolio's cinematic dual-tone (cool cyan / warm amber) aesthetic on a near-black background.
 
 ## Steps
@@ -26,6 +27,7 @@ Replace the hero portrait with the newly uploaded B&W photo, relit to studio-gra
    - If edges feel too hard against the background, lightly tune the existing radial mask in `Portrait.tsx` (no structural changes).
 
 ## Out of scope
+
 - No layout/animation/typography changes to the hero.
 - No changes to other sections.
 - Not touching `Hero.tsx` unless the relit image needs mask tweaks.

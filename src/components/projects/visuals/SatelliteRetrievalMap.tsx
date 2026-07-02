@@ -32,7 +32,11 @@ export function SatelliteRetrievalMap() {
 
   return (
     <VisualFrame aspect="1000/620">
-      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
+      <svg
+        viewBox={`0 0 ${VB.w} ${VB.h}`}
+        className="absolute inset-0 h-full w-full"
+        onMouseLeave={() => setActive(null)}
+      >
         {/* cesium latitude curves */}
         {[120, 200, 320, 440, 540].map((y, i) => (
           <path
@@ -55,7 +59,13 @@ export function SatelliteRetrievalMap() {
 
         {/* DBSCAN cluster regions */}
         {CLUSTERS.map((c) => (
-          <g key={`reg-${c.id}`} style={{ opacity: !active || active === c.id ? 1 : 0.35, transition: "opacity 500ms cubic-bezier(0.22,1,0.36,1)" }}>
+          <g
+            key={`reg-${c.id}`}
+            style={{
+              opacity: !active || active === c.id ? 1 : 0.35,
+              transition: "opacity 500ms cubic-bezier(0.22,1,0.36,1)",
+            }}
+          >
             <ellipse
               cx={c.x}
               cy={c.y}
@@ -68,7 +78,13 @@ export function SatelliteRetrievalMap() {
             />
             {/* member dots */}
             {jitterPoints(c.x, c.y, c.rx, c.ry, c.n, c.x * 13 + c.y).map((p, i) => (
-              <circle key={i} cx={p.x} cy={p.y} r={1.6} fill="color-mix(in oklab, white 60%, transparent)" />
+              <circle
+                key={i}
+                cx={p.x}
+                cy={p.y}
+                r={1.6}
+                fill="color-mix(in oklab, white 60%, transparent)"
+              />
             ))}
             <text
               x={c.x}
@@ -109,7 +125,7 @@ export function SatelliteRetrievalMap() {
                 stroke="color-mix(in oklab, var(--accent-cyan) 55%, transparent)"
                 strokeWidth={0.5}
               />
-            ))
+            )),
           )}
 
         {/* cluster center nodes */}
@@ -137,7 +153,14 @@ export function SatelliteRetrievalMap() {
           animate={{ opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
-        <NodeDot cx={CORE.x} cy={CORE.y} r={18} color="var(--accent-warm)" hub label="RemoteCLIP · ChromaDB" />
+        <NodeDot
+          cx={CORE.x}
+          cy={CORE.y}
+          r={18}
+          color="var(--accent-warm)"
+          hub
+          label="RemoteCLIP · ChromaDB"
+        />
 
         <MetricTag x={40} y={40} label="indexed" value="10k+ images" />
         <MetricTag x={40} y={84} label="query" value="<500ms" />

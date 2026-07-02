@@ -6,58 +6,226 @@ const VB = { w: 1000, h: 620 };
 export function DecisionDriftVisual() {
   const [active, setActive] = useState<string | null>(null);
 
+  const violet = "var(--accent-violet)";
+  const cyan = "var(--accent-cyan)";
+  const indigo = "var(--accent-indigo)";
+
   return (
     <VisualFrame aspect="1000/620">
-      <svg viewBox={`0 0 ${VB.w} ${VB.h}`} className="absolute inset-0 h-full w-full" onMouseLeave={() => setActive(null)}>
-        {/* Background Radial Glow */}
-        <circle cx={500} cy={310} r={250} fill="color-mix(in oklab, var(--accent-violet) 8%, transparent)" style={{ filter: "blur(60px)" }} />
+      <svg
+        viewBox={`0 0 ${VB.w} ${VB.h}`}
+        className="absolute inset-0 h-full w-full"
+        onMouseLeave={() => setActive(null)}
+      >
+        {/* Glow */}
+        <circle
+          cx={500}
+          cy={310}
+          r={280}
+          fill="color-mix(in oklab, var(--accent-violet) 8%, transparent)"
+          style={{ filter: "blur(70px)" }}
+        />
 
-        {/* Incoming Traffic (Left) */}
-        <Edge d="M 100 210 L 350 210" color="color-mix(in oklab, var(--text-tertiary) 40%, transparent)" pulseDur={3} />
-        <Edge d="M 100 410 L 350 410" color="color-mix(in oklab, var(--text-tertiary) 40%, transparent)" pulseDur={3.5} />
-        <NodeDot cx={200} cy={210} r={6} color="var(--text-tertiary)" label="Git Diff" />
-        <NodeDot cx={200} cy={410} r={6} color="var(--text-tertiary)" label="Tree-sitter AST" />
+        {/* Input Sources */}
+        <NodeDot
+          cx={100}
+          cy={280}
+          r={15}
+          color={cyan}
+          label="Repository"
+          active={active === "src"}
+          onEnter={() => setActive("src")}
+          hub
+        />
+        <NodeDot
+          cx={100}
+          cy={120}
+          r={10}
+          color={violet}
+          label="RFCs / Notes"
+          active={active === "src"}
+          onEnter={() => setActive("src")}
+        />
 
-        {/* The Firewall / Rule Engine (Center) */}
-        <g>
-          {/* Vertical Wall */}
-          <rect x={480} y={100} width={40} height={420} rx={12} fill="color-mix(in oklab, var(--accent-violet) 15%, transparent)" stroke="var(--accent-violet)" strokeWidth={1} />
-          {/* Glowing core */}
-          <rect x={488} y={150} width={24} height={320} rx={8} fill="var(--accent-violet)" opacity={0.6} style={{ filter: "blur(12px)" }} />
-          
-          <text x={500} y={80} textAnchor="middle" fill="var(--accent-violet)" fontSize={12} fontFamily="var(--font-mono)" letterSpacing="0.2em">
-            ════ RULE ENGINE ════
-          </text>
+        {/* Governance / ADR Ecosystem (Top) */}
+        <rect
+          x={200}
+          y={40}
+          width={450}
+          height={150}
+          rx={12}
+          fill="color-mix(in oklab, var(--accent-violet) 5%, transparent)"
+          stroke={violet}
+          strokeWidth={1}
+          strokeDasharray="4 6"
+          opacity={0.6}
+        />
+        <text
+          x={425}
+          y={65}
+          textAnchor="middle"
+          fill={violet}
+          fontSize={10}
+          fontFamily="var(--font-mono)"
+          letterSpacing="0.1em"
+        >
+          ADR ECOSYSTEM WORKFLOW
+        </text>
 
-          {/* Audit Branch (Technical verification addition) */}
-          <Edge d="M 500 100 L 500 60 L 650 60" color="color-mix(in oklab, var(--accent-cyan) 30%, transparent)" />
-          <NodeDot cx={650} cy={60} r={5} color="var(--accent-cyan)" label="AUDIT (Drift & Health)" />
-        </g>
+        <NodeDot cx={280} cy={120} r={8} color={violet} label="Ingest" />
+        <Edge d="M 115 120 L 265 120" color={violet} />
 
-        {/* Convergence into Wall */}
-        <Edge d="M 350 210 Q 420 210 480 310" color="color-mix(in oklab, var(--accent-violet) 40%, transparent)" />
-        <Edge d="M 350 410 Q 420 410 480 310" color="color-mix(in oklab, var(--accent-violet) 40%, transparent)" />
+        <NodeDot cx={280} cy={170} r={8} color={cyan} label="Bootstrap" />
+        <Edge d="M 100 260 L 100 170 L 265 170" color={cyan} pulseDur={3} />
 
-        {/* Outgoing Traffic (Right) */}
-        {/* Blocked Path */}
-        <Edge d="M 520 210 L 750 210" color="color-mix(in oklab, #ef4444 30%, transparent)" pulseDur={2} />
-        <g>
-          <circle cx={750} cy={210} r={20} fill="color-mix(in oklab, #ef4444 20%, transparent)" stroke="#ef4444" strokeWidth={1.5} />
-          <path d="M 742 202 L 758 218 M 758 202 L 742 218" stroke="#ef4444" strokeWidth={2} strokeLinecap="round" />
-          <text x={750} y={250} textAnchor="middle" fill="#ef4444" fontSize={10} fontFamily="var(--font-mono)" letterSpacing="0.1em">BLOCKED</text>
-        </g>
+        <Edge d="M 295 120 L 350 145" color={violet} />
+        <Edge d="M 295 170 L 350 145" color={cyan} />
 
-        {/* Allowed Path */}
-        <Edge d="M 520 410 L 750 410" color="color-mix(in oklab, #22c55e 30%, transparent)" pulseDur={3} />
-        <g>
-          <circle cx={750} cy={410} r={20} fill="color-mix(in oklab, #22c55e 20%, transparent)" stroke="#22c55e" strokeWidth={1.5} />
-          <path d="M 740 410 L 748 418 L 760 402" fill="none" stroke="#22c55e" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
-          <text x={750} y={450} textAnchor="middle" fill="#22c55e" fontSize={10} fontFamily="var(--font-mono)" letterSpacing="0.1em">APPROVED</text>
-        </g>
+        <NodeDot
+          cx={360}
+          cy={145}
+          r={10}
+          color={violet}
+          label="Generation"
+          active={active === "adr"}
+          onEnter={() => setActive("adr")}
+        />
+
+        <Edge d="M 375 145 L 435 145" active={active === "adr" || active === "app"} />
+        <NodeDot
+          cx={450}
+          cy={145}
+          r={12}
+          color={violet}
+          label="Approval"
+          hub
+          active={active === "app"}
+          onEnter={() => setActive("app")}
+        />
+
+        <Edge d="M 465 130 L 535 110" active={active === "app"} pulseDur={2} />
+        <NodeDot cx={550} cy={110} r={8} color={indigo} label="Audit (Health)" />
+
+        <Edge d="M 465 160 L 535 180" active={active === "app"} pulseDur={2} />
+        <NodeDot cx={550} cy={180} r={8} color={indigo} label="Impact Analysis" />
+
+        {/* Core Primary Path: Deterministic Engine (Center) */}
+        <rect
+          x={250}
+          y={230}
+          width={400}
+          height={160}
+          rx={12}
+          fill="color-mix(in oklab, var(--accent-cyan) 8%, transparent)"
+          stroke={cyan}
+          strokeWidth={1}
+        />
+        <text
+          x={450}
+          y={255}
+          textAnchor="middle"
+          fill={cyan}
+          fontSize={11}
+          fontFamily="var(--font-mono)"
+          letterSpacing="0.1em"
+        >
+          PRIMARY ENFORCEMENT ENGINE
+        </text>
+
+        <Edge d="M 450 160 L 450 285" active={active === "app" || active === "rule"} />
+        <NodeDot
+          cx={450}
+          cy={300}
+          r={10}
+          color={violet}
+          label="Rule Generation"
+          active={active === "rule"}
+          onEnter={() => setActive("rule")}
+        />
+
+        <Edge d="M 465 300 L 515 300" active={active === "rule" || active === "dre"} />
+        <NodeDot
+          cx={530}
+          cy={300}
+          r={14}
+          color={cyan}
+          label="Deterministic Engine"
+          hub
+          active={active === "dre"}
+          onEnter={() => setActive("dre")}
+        />
+
+        <Edge
+          d="M 120 280 L 530 280"
+          active={active === "src" || active === "dre"}
+          pulseDur={1.5}
+          width={1.2}
+        />
+
+        <Edge d="M 545 300 L 735 300" active={active === "dre" || active === "vd"} width={1.5} />
+
+        {/* LLM Optional Path (Bottom) */}
+        <rect
+          x={250}
+          y={420}
+          width={400}
+          height={100}
+          rx={12}
+          fill="none"
+          stroke="var(--text-tertiary)"
+          strokeWidth={1}
+          strokeDasharray="4 6"
+          opacity={0.5}
+        />
+        <text
+          x={450}
+          y={445}
+          textAnchor="middle"
+          fill="var(--text-secondary)"
+          fontSize={10}
+          fontFamily="var(--font-mono)"
+        >
+          OPTIONAL ANALYSIS
+        </text>
+
+        <NodeDot cx={450} cy={480} r={10} color="var(--text-secondary)" label="LLM Review" />
+
+        <path
+          d="M 100 300 L 100 480 L 435 480"
+          fill="none"
+          stroke="var(--text-tertiary)"
+          strokeWidth={1}
+          strokeDasharray="6 6"
+        />
+        <path
+          d="M 465 480 L 750 480 L 750 315"
+          fill="none"
+          stroke="var(--text-tertiary)"
+          strokeWidth={1}
+          strokeDasharray="6 6"
+        />
+
+        {/* Output & Reporting */}
+        <NodeDot
+          cx={750}
+          cy={300}
+          r={12}
+          color={violet}
+          label="Violation Detection"
+          hub
+          active={active === "vd"}
+          onEnter={() => setActive("vd")}
+        />
+
+        <Edge d="M 765 290 L 835 240" active={active === "vd"} pulseDur={3} />
+        <NodeDot cx={850} cy={240} r={10} color={cyan} label="CLI Tool" />
+
+        <Edge d="M 765 310 L 835 360" active={active === "vd"} pulseDur={3} />
+        <NodeDot cx={850} cy={360} r={10} color={cyan} label="GitHub Action" />
 
         {/* Metrics */}
-        <MetricTag x={40} y={540} label="Recall@5" value="95.2%" />
-        <MetricTag x={VB.w - 180} y={540} label="Rules" value="5 types" />
+        <MetricTag x={40} y={40} label="Recall@5" value="95.2%" />
+        <MetricTag x={VB.w - 180} y={40} label="Rules" value="5 types" />
       </svg>
     </VisualFrame>
   );

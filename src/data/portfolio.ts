@@ -5,8 +5,7 @@ export const PROFILE = {
   role: "AI Systems Engineer",
   tagline:
     "Engineering intelligent systems that scale — from vector retrieval pipelines to production ML infrastructure.",
-  summary:
-    "Focused on backend architecture, distributed systems, and real-world AI deployment.",
+  summary: "Focused on backend architecture, distributed systems, and real-world AI deployment.",
   email: "madhankrthik@gmail.com",
   github: "https://github.com/madhan-karthikeyan",
   linkedin: "https://linkedin.com/in/madhan-karthikeyan",
@@ -163,19 +162,50 @@ export const SECONDARY_PROJECTS: Project[] = [
 export const EXPERTISE = [
   {
     title: "Backend & Systems",
-    items: ["Python", "FastAPI", "Flask", "Async I/O (SQLAlchemy, asyncpg)", "Celery", "Redis", "REST API Design"],
+    items: [
+      "Python",
+      "FastAPI",
+      "Flask",
+      "Async I/O (SQLAlchemy, asyncpg)",
+      "Celery",
+      "Redis",
+      "REST API Design",
+    ],
   },
   {
     title: "Retrieval & CV",
-    items: ["FAISS", "ChromaDB", "RemoteCLIP / CLIP", "Vector Search", "Embedding Pipelines", "Object Detection (YOLOv8)"],
+    items: [
+      "FAISS",
+      "ChromaDB",
+      "RemoteCLIP / CLIP",
+      "Vector Search",
+      "Embedding Pipelines",
+      "Object Detection (YOLOv8)",
+    ],
   },
   {
     title: "DevOps & CLI Tools",
-    items: ["Docker Compose", "GitHub Actions (CI/CD)", "AWS", "AST & Static Analysis (Tree-sitter)", "Click", "PyPI Packaging"],
+    items: [
+      "Docker Compose",
+      "GitHub Actions (CI/CD)",
+      "AWS",
+      "AST & Static Analysis (Tree-sitter)",
+      "Click",
+      "PyPI Packaging",
+    ],
   },
   {
     title: "ML Infrastructure",
-    items: ["PyTorch", "LightGBM", "XGBoost", "Time-Series Forecasting", "GMM", "DBSCAN", "RAG Pipelines", "LlamaIndex"],
+    items: [
+      "PyTorch",
+      "LightGBM",
+      "XGBoost",
+      "Time-Series Forecasting",
+      "GMM",
+      "DBSCAN",
+      "RAG Pipelines",
+      "LlamaIndex",
+    ],
   },
 ];
 
@@ -204,8 +234,16 @@ export const EXPERIENCE = [
 ];
 
 export const EDUCATION = [
-  { school: "Vellore Institute of Technology", detail: "B.Tech CSE · CGPA 8.80 / 10", period: "Aug 2023 – Present" },
-  { school: "Indian Institute of Technology, Madras", detail: "B.S. Data Science & Applications", period: "Sep 2023 – Present" },
+  {
+    school: "Vellore Institute of Technology",
+    detail: "B.Tech CSE · CGPA 8.80 / 10",
+    period: "Aug 2023 – Present",
+  },
+  {
+    school: "Indian Institute of Technology, Madras",
+    detail: "B.S. Data Science & Applications",
+    period: "Sep 2023 – Present",
+  },
 ];
 
 export const CERTIFICATIONS = [

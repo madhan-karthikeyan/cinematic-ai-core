@@ -9,4 +9,14 @@ export default defineConfig({
     port: 8080,
     host: "::",
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom"],
+          framer: ["framer-motion"],
+        },
+      },
+    },
+  },
 });

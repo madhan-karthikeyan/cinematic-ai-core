@@ -69,8 +69,15 @@ export function Edge({
         style={{ transition: "stroke 500ms cubic-bezier(0.22,1,0.36,1)" }}
       />
       {pulse && (
-        <circle r={active ? 2.4 : 1.4} fill={active ? "white" : "color-mix(in oklab, white 55%, transparent)"}>
-          <animateMotion dur={`${active ? pulseDur * 0.45 : pulseDur}s`} repeatCount="indefinite" path={d} />
+        <circle
+          r={active ? 2.4 : 1.4}
+          fill={active ? "white" : "color-mix(in oklab, white 55%, transparent)"}
+        >
+          <animateMotion
+            dur={`${active ? pulseDur * 0.45 : pulseDur}s`}
+            repeatCount="indefinite"
+            path={d}
+          />
         </circle>
       )}
     </g>
@@ -258,7 +265,7 @@ export function VisualFrame({
       clearTimeout(t2);
     };
   }, [scale]);
-  
+
   const clampScale = (s: number) => Math.min(3, Math.max(1, s));
 
   const zoom = useCallback((delta: number) => {
@@ -283,7 +290,8 @@ export function VisualFrame({
   const onPointerDown = (e: React.PointerEvent) => {
     const now = Date.now();
     if (now - lastTap < 300) {
-      if (scale === 1) zoom(1); // Zoom to 2.0x
+      if (scale === 1)
+        zoom(1); // Zoom to 2.0x
       else reset();
       setLastTap(0);
       setShowHint(false);
@@ -295,7 +303,7 @@ export function VisualFrame({
     (e.target as Element).setPointerCapture?.(e.pointerId);
     dragRef.current = { x: e.clientX, y: e.clientY, px: pan.x, py: pan.y };
   };
-  
+
   const onPointerMove = (e: React.PointerEvent) => {
     if (!dragRef.current) return;
     setPan({
@@ -313,9 +321,9 @@ export function VisualFrame({
       <AmbientGrid />
       <div
         className="relative w-full aspect-square md:!aspect-[var(--desktop-aspect)]"
-        style={Object.assign(
-          { "--desktop-aspect": aspect.replace("/", " / ") } as React.CSSProperties
-        )}
+        style={Object.assign({
+          "--desktop-aspect": aspect.replace("/", " / "),
+        } as React.CSSProperties)}
         onWheel={onWheel}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
